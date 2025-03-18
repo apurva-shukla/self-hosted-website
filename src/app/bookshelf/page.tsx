@@ -86,11 +86,8 @@ const getCategoryClass = (category: string): string => {
   }
 };
 
-export default function BookshelfPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+// NextJS App Router page component
+export default function Page({ searchParams = {} }) {
   // Get all posts (excluding drafts)
   const allPosts = getAllPosts();
   
@@ -114,7 +111,7 @@ export default function BookshelfPage({
   
   // Get the current category from search params
   const categoryParam = searchParams.category;
-  const currentCategory: Category = typeof categoryParam === 'string' 
+  const currentCategory = typeof categoryParam === 'string' 
     ? (categories.includes(categoryParam as Category) ? categoryParam as Category : 'All')
     : 'All';
   
