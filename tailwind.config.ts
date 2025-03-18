@@ -20,6 +20,13 @@ const config: Config = {
         "accent-7": "#333",
         success: "#0070a4",
         cyan: "#79FFE1",
+        // Category colors
+        category: {
+          all: "#3b82f6",         // blue-500
+          programming: "#8b5cf6", // purple-500
+          "personal-development": "#22c55e", // green-500
+          productivity: "#f59e0b", // amber-500
+        },
       },
       spacing: {
         28: "4rem",
@@ -30,7 +37,7 @@ const config: Config = {
       fontSize: {
         "5xl": "2.5rem",
         "6xl": "2.75rem",
-        "7xl": "4.5rem",
+        "7xl": "4rem",
         "8xl": "6.25rem",
       },
       boxShadow: {

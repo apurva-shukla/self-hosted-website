@@ -1,29 +1,38 @@
 import Container from "@/app/_components/container";
-import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
-import { getAllPosts } from "@/lib/api";
+import Image from "next/image";
 
 export default function Index() {
-  const allPosts = getAllPosts();
-
-  const heroPost = allPosts[0];
-
-  const morePosts = allPosts.slice(1);
-
   return (
-    <main>
+    <main className="min-h-screen py-12">
       <Container>
-        <Intro />
-        <HeroPost
-          title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
-          slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
-        />
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        <div className="flex flex-col items-center md:flex-row md:justify-between md:space-x-12">
+          <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden mb-8 md:mb-0">
+            {/* Replace /your-photo.jpg with your actual photo path */}
+            <Image
+              src="/placeholder-profile.jpg"
+              alt="Apurva Shukla"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white">
+              Apurva Shukla
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6">
+              Software Engineer & Book Enthusiast
+            </p>
+            <div className="prose dark:prose-invert max-w-none">
+              <p className="text-lg">
+                Welcome to my personal corner of the web! I'm passionate about software development,
+                building efficient systems, and reading books that help me grow personally and professionally.
+                Here, I share my journey, thoughts on books I've read, and projects I'm working on.
+              </p>
+            </div>
+          </div>
+        </div>
       </Container>
     </main>
   );

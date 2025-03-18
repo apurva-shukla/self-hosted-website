@@ -12,4 +12,7 @@ export type Post = {
   };
   content: string;
   preview?: boolean;
+  category?: string;
+  draft?: boolean;
+  bookSummary?: boolean;
 };

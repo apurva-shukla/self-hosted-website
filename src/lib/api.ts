@@ -18,11 +18,18 @@ export function getPostBySlug(slug: string) {
   return { ...data, slug: realSlug, content } as Post;
 }
 
-export function getAllPosts(): Post[] {
+export function getAllPosts(includeDrafts: boolean = false): Post[] {
   const slugs = getPostSlugs();
   const posts = slugs
     .map((slug) => getPostBySlug(slug))
+    // Filter out drafts if includeDrafts is false
+    .filter((post) => includeDrafts || post.draft !== true)
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;
+}
+
+// Get all posts including drafts
+export function getAllPostsIncludingDrafts(): Post[] {
+  return getAllPosts(true);
 }
