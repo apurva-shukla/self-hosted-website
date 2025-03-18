@@ -1,5 +1,5 @@
 import { HOME_OG_IMAGE_URL } from "@/lib/constants";
-import type { Metadata } from "next";
+import type { Metadata } from "next/dist/lib/metadata";
 import { Inter } from "next/font/google";
 import Navigation from "./_components/navigation";
 

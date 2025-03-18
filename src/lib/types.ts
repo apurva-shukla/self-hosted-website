@@ -15,4 +15,17 @@ export type PageProps = {
 export type AppRouterPageProps<T extends Record<string, string> = {}> = {
   params: T;
   searchParams?: SearchParams;
-}; 
+};
+
+// Fallback Metadata type for Next.js App Router
+export interface Metadata {
+  title?: string | null;
+  description?: string | null;
+  openGraph?: {
+    title?: string | null;
+    description?: string | null;
+    images?: string | { url: string }[] | null;
+    [key: string]: any;
+  };
+  [key: string]: any;
+} 

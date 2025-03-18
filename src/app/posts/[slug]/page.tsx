@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata } from "next/dist/lib/metadata";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { CMS_NAME } from "@/lib/constants";
