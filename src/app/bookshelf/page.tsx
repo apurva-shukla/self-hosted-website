@@ -86,14 +86,11 @@ const getCategoryClass = (category: string): string => {
   }
 };
 
-// Props type using NextJS App Router's SearchParams
-type SearchParams = { [key: string]: string | string[] | undefined };
-
-type Props = {
-  searchParams: SearchParams;
-};
-
-export default function BookshelfPage({ searchParams }: Props) {
+export default function BookshelfPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   // Get all posts (excluding drafts)
   const allPosts = getAllPosts();
   
@@ -116,8 +113,9 @@ export default function BookshelfPage({ searchParams }: Props) {
   });
   
   // Get the current category from search params
-  const currentCategory = typeof searchParams.category === 'string' 
-    ? (searchParams.category as Category) 
+  const categoryParam = searchParams.category;
+  const currentCategory: Category = typeof categoryParam === 'string' 
+    ? (categories.includes(categoryParam as Category) ? categoryParam as Category : 'All')
     : 'All';
   
   // Filter books based on the selected category
