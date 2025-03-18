@@ -4,6 +4,7 @@ import Link from "next/link";
 import CategoryFilter from "@/app/_components/category-filter";
 import { getAllPosts } from "@/lib/api";
 import { Post } from "@/interfaces/post";
+import { PageProps } from "@/lib/types";
 
 export const metadata = {
   title: 'Bookshelf',
@@ -87,7 +88,7 @@ const getCategoryClass = (category: string): string => {
 };
 
 // NextJS App Router page component
-export default function Page({ searchParams = {} }) {
+export default function Page({ searchParams }: PageProps) {
   // Get all posts (excluding drafts)
   const allPosts = getAllPosts();
   
@@ -110,7 +111,7 @@ export default function Page({ searchParams = {} }) {
   });
   
   // Get the current category from search params
-  const categoryParam = searchParams.category;
+  const categoryParam = searchParams?.category;
   const currentCategory = typeof categoryParam === 'string' 
     ? (categories.includes(categoryParam as Category) ? categoryParam as Category : 'All')
     : 'All';
