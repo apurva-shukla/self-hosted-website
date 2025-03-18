@@ -113,12 +113,19 @@
      - Site metadata and description
    - Customized bio text to focus on software and books
 
-4. **Footer Removal**:
+4. **TypeScript OpenGraph Metadata Fix**:
+   - Fixed TypeScript errors related to OpenGraph metadata in layout.tsx and posts/[slug]/page.tsx
+   - Updated the images property in OpenGraph metadata to use the correct format
+   - Changed from array of strings ([HOME_OG_IMAGE_URL]) to array of objects with url property ([{ url: HOME_OG_IMAGE_URL }])
+   - Ensured compliance with Metadata type definition from lib/types.ts
+   - Resolved all related TypeScript linter errors
+
+5. **Footer Removal**:
    - Removed the default Next.js footer from the layout
    - Eliminated "Statically Generated with Next.js" message
    - Created cleaner, more professional appearance for the website
 
-5. **Bookshelf Page Enhancements**:
+6. **Bookshelf Page Enhancements**:
    - Implemented a new card-based layout with horizontal orientation
    - Added book cover images with max height of 150px
    - Created a two-column grid layout for medium and larger screens
@@ -128,7 +135,7 @@
    - Added proper error handling for missing properties
    - Improved visual hierarchy with title, author, and description formatting
 
-6. **Interactive Category Filtering**:
+7. **Interactive Category Filtering**:
    - Implemented client-side category filtering functionality
    - Created a separate CategoryFilter client component with 'use client' directive
    - Used URL search parameters to maintain filter state across page refreshes
@@ -137,7 +144,7 @@
    - Ensured filter state persists in the URL for shareable filtered views
    - Improved user experience with smooth transitions between filtered views
 
-7. **Category Color System**:
+8. **Category Color System**:
    - Added custom category colors in tailwind.config.ts for centralized color management
    - Implemented consistent color scheme across category tags and filter buttons
    - Created color-coded visual system with semantic naming:
@@ -174,6 +181,65 @@
    - Card-based UI with shadow and rounded corners
    - Consistent spacing and typography
    - Category tags styled as pill-shaped badges
+
+## Project Structure
+
+The project follows the Next.js 14 App Router architecture with a focus on server components and static site generation.
+
+### Root Directory
+- `package.json` - NPM dependencies and scripts
+- `tsconfig.json` - TypeScript configuration
+- `tailwind.config.ts` - Tailwind CSS configuration with custom colors for categories
+- `postcss.config.js` - PostCSS configuration for Tailwind
+- `next-env.d.ts` - Next.js TypeScript declarations
+- `README.md` - Project documentation
+- `notes.md` - Development notes and implementation plan (this file)
+
+### Content Organization
+- `_posts/` - Markdown files for blog posts and book summaries
+  - Files follow the format: `{slug}.md`
+  - Each file includes YAML frontmatter with metadata
+  - Book summaries use a consistent format with title, author, cover image, etc.
+  - Templates available: `blog-post-template.md`, `book-template.md`
+
+### Source Code (`src/`)
+1. **App Directory (`src/app/`)**
+   - `page.tsx` - Home page component
+   - `layout.tsx` - Root layout with metadata and HTML structure
+   - `globals.css` - Global CSS styles and Tailwind imports
+   - `types.d.ts` - TypeScript declarations for the app
+
+   **Route Pages:**
+   - `about/` - About page route
+   - `posts/` - Blog post pages with dynamic routing ([slug])
+   - `bookshelf/` - Bookshelf page with book recommendations
+
+   **Components (`_components/`)**
+   - `navigation.tsx` - Site-wide navigation bar
+   - `container.tsx` - Layout container with consistent max-width
+   - `post-*.tsx` - Components for blog post rendering
+   - `category-filter.tsx` - Client component for filtering books by category
+   - Plus various UI components for blog and bookshelf features
+
+2. **Library (`src/lib/`)**
+   - `api.ts` - Functions for fetching blog posts from the filesystem
+   - `constants.ts` - Site-wide constants like CMS name and OG image
+   - `markdownToHtml.ts` - Markdown processing utilities
+   - `types.ts` - TypeScript type definitions for metadata and other shared types
+
+3. **Interfaces (`src/interfaces/`)**
+   - TypeScript interfaces for data structures used throughout the app
+
+### Public Assets (`public/`)
+- `favicon/` - Favicon files in various formats
+- `assets/` - Images and other static assets
+  - `books/` - Book cover images
+  - `blog/` - Blog post cover images
+  - `authors/` - Author profile images
+
+### Next.js Generated Files
+- `.next/` - Build output (generated)
+- `node_modules/` - Installed dependencies (generated)
 
 ## Next Steps for Further Enhancements:
 1. **Data Management**:
