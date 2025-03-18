@@ -6,8 +6,33 @@ declare namespace JSX {
   }
 }
 
-// Define Next.js App Router page parameters
+// For Next.js App Router metadata
+interface Metadata {
+  title?: string | null;
+  description?: string | null;
+  openGraph?: {
+    title?: string | null;
+    description?: string | null;
+    images?: string | { url: string }[] | null;
+    [key: string]: any;
+  };
+  [key: string]: any;
+}
+
+// Fix NextJS App Router page props issues
 declare module 'next' {
+  export interface Metadata {
+    title?: string | null;
+    description?: string | null;
+    openGraph?: {
+      title?: string | null;
+      description?: string | null;
+      images?: string | { url: string }[] | null;
+      [key: string]: any;
+    };
+    [key: string]: any;
+  }
+
   export interface PageProps {
     params?: Record<string, string>;
     searchParams?: Record<string, string | string[] | undefined>;

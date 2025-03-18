@@ -4,7 +4,7 @@ import Link from "next/link";
 import CategoryFilter from "@/app/_components/category-filter";
 import { getAllPosts } from "@/lib/api";
 import { Post } from "@/interfaces/post";
-import { PageProps } from "@/lib/types";
+import { Metadata, PageProps } from "@/lib/types";
 
 export const metadata = {
   title: 'Bookshelf',

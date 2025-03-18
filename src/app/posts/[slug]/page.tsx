@@ -1,4 +1,4 @@
-import { Metadata } from "next/dist/lib/metadata";
+import { Metadata } from "@/lib/types";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { CMS_NAME } from "@/lib/constants";
@@ -67,7 +67,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     title,
     openGraph: {
       title,
-      images: [post.ogImage.url],
+      images: [{ url: post.ogImage.url }],
     },
   };
 }

@@ -1,5 +1,5 @@
 import { HOME_OG_IMAGE_URL } from "@/lib/constants";
-import type { Metadata } from "next/dist/lib/metadata";
+import { Metadata } from "@/lib/types";
 import { Inter } from "next/font/google";
 import Navigation from "./_components/navigation";
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: `Apurva Shukla's Personal Website`,
   description: `Welcome to Apurva Shukla's personal website featuring blogs, book summaries, and more.`,
   openGraph: {
-    images: [HOME_OG_IMAGE_URL],
+    images: [{ url: HOME_OG_IMAGE_URL }],
   },
 };
 
