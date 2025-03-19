@@ -1,13 +1,16 @@
 ---
-title: "Book Summary: Deep Work by Cal Newport"
-excerpt: "How focused work without distraction can transform your productivity and career growth."
-coverImage: "/placeholder-profile.jpg"
-date: "2023-07-10T14:22:18.456Z"
+title: "Deep Work"
+excerpt: "How focused work without distractions can lead to extraordinary results - my takeaways from Newport's book."
+coverImage: "/assets/blog/preview/cover.jpg"
+date: "2023-01-20T05:35:07.322Z"
+category: "Productivity"
+bookSummary: true
+bookAuthor: "Cal Newport"
 author:
   name: "Apurva Shukla"
   picture: "/placeholder-profile.jpg"
 ogImage:
-  url: "/placeholder-profile.jpg"
+  url: "/assets/blog/preview/cover.jpg"
 ---
 
 # Deep Work: Rules for Focused Success in a Distracted World

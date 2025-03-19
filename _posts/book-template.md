@@ -6,6 +6,7 @@ date: "2023-01-01T00:00:00.000Z"
 category: "Programming" # Options: Programming, Personal Development, Productivity, Other
 draft: true # Set to false when ready to publish
 bookSummary: true # Set to true for book summaries that should appear in the bookshelf
+bookAuthor: "Author Name" # The author of the book (not the blog post)
 author:
   name: "Author Name"
   picture: "/placeholder-profile.jpg"

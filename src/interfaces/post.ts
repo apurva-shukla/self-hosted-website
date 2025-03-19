@@ -15,4 +15,5 @@ export type Post = {
   category?: string;
   draft?: boolean;
   bookSummary?: boolean;
+  bookAuthor?: string;
 };

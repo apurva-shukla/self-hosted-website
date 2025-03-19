@@ -1,13 +1,16 @@
 ---
-title: "Book Summary: The Pragmatic Programmer by David Thomas & Andrew Hunt"
-excerpt: "Key insights from this classic programming book that has shaped my approach to software development."
-coverImage: "/placeholder-profile.jpg"
-date: "2023-06-20T09:45:32.123Z"
+title: "The Pragmatic Programmer"
+excerpt: "Key insights from this classic software development guide that has shaped my approach to programming."
+coverImage: "/assets/blog/hello-world/cover.jpg"
+date: "2023-03-16T05:35:07.322Z"
+category: "Programming"
+bookSummary: true
+bookAuthor: "Andy Hunt and Dave Thomas"
 author:
   name: "Apurva Shukla"
   picture: "/placeholder-profile.jpg"
 ogImage:
-  url: "/placeholder-profile.jpg"
+  url: "/assets/blog/hello-world/cover.jpg"
 ---
 
 # The Pragmatic Programmer: Your Journey to Mastery

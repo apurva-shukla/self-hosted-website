@@ -13,12 +13,6 @@ export default function BlogPage() {
   return (
     <main className="py-12">
       <Container>
-        <header className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white">Blog</h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300">
-            Thoughts, ideas, and explorations from my journey
-          </p>
-        </header>
         
         {posts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mb-12">

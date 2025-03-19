@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* JJannon Font */
+@font-face {
+  font-family: "JJannon";
+  src: url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.eot");
+  src: url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.svg#JJannon")format("svg");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Base body styling */
+body {
+  font-family: "JJannon", serif !important;
+  letter-spacing: 0.25px;
+  font-size: 0.9rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #373737;
+}
+
 /* Override dark mode styles with light mode equivalents */
 :root {
   color-scheme: light;

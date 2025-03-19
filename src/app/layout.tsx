@@ -1,11 +1,8 @@
 import { HOME_OG_IMAGE_URL } from "@/lib/constants";
 import { Metadata } from "@/lib/types";
-import { Inter } from "next/font/google";
 import Navigation from "./_components/navigation";
 
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: `Apurva Shukla's Personal Website`,
@@ -54,10 +51,9 @@ export default function RootLayout({
         />
         <meta name="theme-color" content="#000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <link href="https://db.onlinewebfonts.com/c/2b2a0e640a6c016b18b8ff6574a4c75b?family=JJannon" rel="stylesheet" />
       </head>
-      <body
-        className={inter.className}
-      >
+      <body>
         <Navigation />
         <div className="min-h-screen">{children}</div>
       </body>

@@ -1,8 +1,11 @@
 ---
-title: "Book Summary: Atomic Habits by James Clear"
+title: "Atomic Habits"
 excerpt: "My personal takeaways and insights from James Clear's bestseller on how tiny changes can lead to remarkable results."
 coverImage: "/assets/blog/dynamic-routing/cover.jpg"
 date: "2023-05-15T05:35:07.322Z"
+category: "Personal Development"
+bookSummary: true
+bookAuthor: "James Clear"
 author:
   name: "Apurva Shukla"
   picture: "/placeholder-profile.jpg"

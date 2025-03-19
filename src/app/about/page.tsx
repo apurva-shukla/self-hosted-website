@@ -11,7 +11,7 @@ export default function AboutPage() {
     <main className="py-12">
       <Container>
         <article className="prose dark:prose-invert mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">About Me</h1>
+          {/* <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">About Me</h1> */}
           
           <div className="mb-12">
             <Image

@@ -11,6 +11,23 @@ export const metadata = {
   description: 'Books I have read and recommend',
 };
 
+// Function to extract book author from the title or use bookAuthor field if available
+const extractBookAuthor = (post: Post): string => {
+  // First check if post has a dedicated bookAuthor field
+  if ((post as any).bookAuthor) {
+    return (post as any).bookAuthor;
+  }
+  
+  // Extract author from title (e.g., "Atomic Habits by James Clear" -> "James Clear")
+  const titleMatch = post.title.match(/by\s+([^"]+)$/);
+  if (titleMatch && titleMatch[1]) {
+    return titleMatch[1].trim();
+  }
+  
+  // Default to the post author if no specific book author is found
+  return post.author.name;
+};
+
 // Function to determine category based on post content or tags
 const getBookCategory = (post: Post): Category => {
   // First check if post has a category field
@@ -98,10 +115,13 @@ export default function Page({ searchParams }: PageProps) {
   // Convert posts to book format
   const books = bookPosts.map((post, index) => {
     const category = getBookCategory(post);
+    const bookAuthor = extractBookAuthor(post);
+    
     return {
       id: index + 1,
       title: post.title,
       author: post.author.name,
+      bookAuthor: bookAuthor, // Add dedicated book author field
       coverImage: post.coverImage,
       description: post.excerpt,
       link: `/posts/${post.slug}`,
@@ -122,59 +142,62 @@ export default function Page({ searchParams }: PageProps) {
     : books.filter(book => book.category === currentCategory);
   
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">My Bookshelf</h1>
-      
-      {/* Category filters */}
-      <CategoryFilter 
-        categories={categories} 
-        currentCategory={currentCategory}
-      />
-      
-      {/* Book grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => (
-            <div key={book.id} className="bg-white rounded-lg overflow-hidden shadow-md">
-              <div className="flex flex-row p-6">
-                <div className="flex-shrink-0 w-1/3">
-                  <Link href={`/posts/${book.blogPostSlug}`}>
-                    <div className="relative">
-                      <Image
-                        src={book.coverImage}
-                        alt={`${book.title} cover`}
-                        width={200}
-                        height={300}
-                        className="object-cover max-h-[150px]"
-                      />
+    <Container>
+      <div className="py-8">
+
+        {/* Category filters */}
+        <CategoryFilter 
+          categories={categories} 
+          currentCategory={currentCategory}
+        />
+        
+        {/* Book grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filteredBooks.length > 0 ? (
+            filteredBooks.map((book) => (
+              <Link href={`/posts/${book.blogPostSlug}`} key={book.id} className="block">
+                <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                  <div className="flex flex-row p-6">
+                    <div className="flex-shrink-0 w-1/3">
+                      <div className="relative">
+                        <Image
+                          src={book.coverImage}
+                          alt={`${book.title} cover`}
+                          width={200}
+                          height={300}
+                          className="object-cover max-h-[150px]"
+                        />
+                      </div>
                     </div>
-                  </Link>
-                </div>
-                
-                <div className="ml-6 flex flex-col flex-grow">
-                  <h2 className="text-2xl font-bold mb-1">{book.title}</h2>
-                  <p className="text-gray-600 mb-2">by {book.author}</p>
-                  <p className="text-sm mb-4">{book.description}</p>
-                  
-                  <div className="mt-auto">
-                    {book.category && (
-                      <span 
-                        className={`inline-block ${getCategoryClass(book.category)} rounded-md px-4 py-1 text-sm`}
-                      >
-                        {book.category}
-                      </span>
-                    )}
+                    
+                    <div className="ml-6 flex flex-col flex-grow">
+                      <h2 className="text-2xl font-bold mb-1">{book.title}</h2>
+                      <p className="text-gray-600 mb-2">
+                        {book.bookAuthor ? `By ${book.bookAuthor}` : ""}
+                      </p>
+                      <p className="text-sm mb-4">{book.description}</p>
+                      
+                      <div className="mt-auto">
+                        {book.category && (
+                          <span 
+                            className={`inline-block ${getCategoryClass(book.category)} rounded-md px-4 py-1 text-sm`}
+                          >
+                            {book.category}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
+            ))
+          ) : (
+            <div className="col-span-2 text-center py-8">
+              <p className="text-lg text-gray-600">No books found in this category.</p>
             </div>
-          ))
-        ) : (
-          <div className="col-span-2 text-center py-8">
-            <p className="text-lg text-gray-600">No books found in this category.</p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }

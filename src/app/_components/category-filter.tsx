@@ -61,9 +61,11 @@ export default function CategoryFilter({ categories, currentCategory = 'All' }: 
         <button
           key={category}
           onClick={() => handleCategoryChange(category)}
-          className={`px-4 py-2 rounded-md transition-colors ${
+          className={`px-4 py-2 rounded-md transition-all ${
             getCategoryClass(category, category === currentCategory)
-          }`}
+          } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-105`}
+          aria-pressed={category === currentCategory}
+          aria-label={`Filter by ${category} category`}
         >
           {category}
         </button>

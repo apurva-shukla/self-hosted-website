@@ -14,9 +14,12 @@ const Navigation = () => {
 
   return (
     <nav className="w-full border-b border-gray-200 dark:border-gray-800">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container">
         <div className="flex justify-between h-16 items-center">
-          <Link href="/" className="text-xl font-bold">
+          <Link 
+            href="/" 
+            className="text-xl font-bold transition-colors duration-200 hover:text-blue-600 focus:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md"
+          >
             Apurva Shukla
           </Link>
           
@@ -30,7 +33,7 @@ const Navigation = () => {
                     pathname === item.href
                       ? 'text-blue-600 dark:text-blue-400'
                       : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                  } transition-colors duration-200`}
+                  } transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1`}
                 >
                   {item.label}
                 </Link>

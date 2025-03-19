@@ -156,7 +156,53 @@
    - Added hover effects to improve interactive feedback
    - Ensured text remains white for optimal readability across all category colors
 
-## Technical Implementation Details:
+9. **UI Enhancements**:
+   - Added hover effects to book cards with subtle zoom animation (transform: scale(1.02))
+   - Improved shadow effect on hover for better depth perception
+   - Made entire book cards clickable instead of just the image
+   - Removed redundant author attribution when author is "Apurva Shukla"
+   - Added proper focus states with blue ring for all interactive elements:
+     - Navigation links
+     - Category filter buttons
+     - Book cards
+   - Added aria attributes to category buttons for improved accessibility
+   - Added smooth transitions for hover and focus effects
+
+10. **Book Author Display Improvements**:
+   - Added dedicated `bookAuthor` field to book post metadata
+   - Updated book template with clear separation between post author and book author
+   - Implemented smart author extraction from book titles as fallback
+   - Applied consistent "By [Author]" format in book cards
+   - Updated existing book summaries with proper book author metadata
+   - Extended Post interface to include bookAuthor for type safety
+   - Created a cleaner separation between content author and book author
+   - Standardized metadata across all book summaries (Alice in Wonderland, Atomic Habits, Deep Work, Pragmatic Programmer) to align with the book template
+
+11. **Blog Post Navigation Enhancement**:
+   - Completely removed the Header component from individual blog post pages
+   - Eliminated the "Blog." heading and navigation element for a cleaner layout
+   - Improved visual hierarchy on post pages by removing redundant elements
+   - Created a more streamlined reading experience
+   - Enhanced focus on the actual content
+
+12. **Layout Consistency Improvements**:
+   - Aligned navigation bar with page content for visual consistency
+   - Implemented global container configuration in tailwind.config.ts
+   - Updated both navigation and content components to use the standardized container
+   - Created a more cohesive design with proper alignment of all elements
+   - Followed Tailwind best practices for container customization
+   - Improved responsive behavior with consistent breakpoints across all screen sizes
+
+13. **Typography Enhancement**:
+   - Integrated JJannon Book as the site-wide font family
+   - Replaced the default Inter font with a more distinctive typeface
+   - Added proper font-face declaration in the global CSS
+   - Configured Tailwind to use JJannon Book as the default sans-serif font
+   - Created a dedicated font class (font-jjannon) for targeted application
+   - Added font-display: swap for better performance during font loading
+   - Ensured consistent typography across all pages
+
+# Technical Implementation Details:
 1. **Server Component Architecture**:
    - Bookshelf page implemented as a React Server Component
    - Static rendering of book data without client-side state
@@ -241,17 +287,51 @@ The project follows the Next.js 14 App Router architecture with a focus on serve
 - `.next/` - Build output (generated)
 - `node_modules/` - Installed dependencies (generated)
 
-## Next Steps for Further Enhancements:
+## Backlog
 1. **Data Management**:
    - Move book data to a separate data file or API endpoint
    - Consider implementing a CMS for easier content management
    - Add more book entries with complete metadata
 
-2. **UI Improvements**:
-   - Add hover effects to book cards for better interactivity
-   - Implement skeleton loading states for better UX
-   - Consider adding pagination for larger book collections
-   - Add sorting options (by title, author, date added)
+2. **Content Expansion**:
+   - Add "Currently Reading" section at the top
+   - Include reading progress indicators
+   - Add ratings or personal notes for each book
+   - Consider adding book purchase links with affiliate tracking
+
+4. **Performance Optimization**:
+- Implement image lazy loading for faster initial page load
+- Add proper image sizing and formats (WebP, AVIF)
+- Consider implementing Incremental Static Regeneration for dynamic content
+
+5. **Accessibility Improvements**:
+- Ensure proper contrast ratios for text
+- Add proper ARIA labels for interactive elements
+- Test with screen readers and keyboard navigation
+
+6. **Analytics Integration**:
+   - Add page view tracking
+   - Implement event tracking for book link clicks
+   - Consider adding heatmap tracking for UI optimization
+
+2. **SEO Enhancements**:
+   - Add structured data for books (Schema.org BookEdition)
+   - Optimize meta descriptions and titles
+   - Implement canonical URLs for book pages
+   - Add OpenGraph and Twitter card metadata
+
+## Next Steps for Further Enhancements:
+
+1. ~~**UI Improvements**:~~
+   - ~~Add a subtle zoom in on hover for the book card~~
+   - ~~Remove 'by Apurva Shukla' from the bookshelf page~~
+   - ~~Make the whole book card clickable to reveal the book summary~~
+   - ~~Implement focus states for interactive elements~~
+
+2. **Data Management**:
+   - Move book data to a separate data file or API endpoint
+   - Consider implementing a CMS for easier content management
+   - Add more book entries with complete metadata
 
 3. **Content Expansion**:
    - Add "Currently Reading" section at the top
@@ -268,7 +348,6 @@ The project follows the Next.js 14 App Router architecture with a focus on serve
    - Ensure proper contrast ratios for text
    - Add proper ARIA labels for interactive elements
    - Test with screen readers and keyboard navigation
-   - Implement focus states for interactive elements
 
 6. **Analytics Integration**:
    - Add page view tracking
