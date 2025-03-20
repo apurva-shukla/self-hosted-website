@@ -22,13 +22,13 @@ export default function Index() {
               Apurva Shukla
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6">
-              Software Engineer & Book Enthusiast
+              Making this website
             </p>
             <div className="prose dark:prose-invert max-w-none">
               <p className="text-lg">
-                Welcome to my personal corner of the web! I'm passionate about software development,
-                building efficient systems, and reading books that help me grow personally and professionally.
-                Here, I share my journey, thoughts on books I've read, and projects I'm working on.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
               </p>
             </div>
           </div>
