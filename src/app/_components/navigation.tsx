@@ -18,7 +18,7 @@ const Navigation = () => {
         <div className="flex justify-between h-16 items-center">
           <Link 
             href="/" 
-            className="text-xl font-bold transition-colors duration-200 hover:text-blue-600 focus:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md"
+            className="text-xl font-bold transition-colors duration-200 hover:text-blue-600 focus:outline-none focus-visible:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md"
           >
             Apurva Shukla
           </Link>
@@ -33,7 +33,7 @@ const Navigation = () => {
                     pathname === item.href
                       ? 'text-blue-600 dark:text-blue-400'
                       : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                  } transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1`}
+                  } transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md p-1`}
                 >
                   {item.label}
                 </Link>

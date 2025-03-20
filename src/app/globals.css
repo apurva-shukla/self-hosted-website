@@ -68,3 +68,31 @@ body {
 .dark\:hover\:text-blue-400:hover {
   color: #2563eb !important; /* blue-600 equivalent */
 }
+
+a:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Aggressive focus ring removal */
+a:focus, 
+a:focus-within,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  --tw-ring-offset-shadow: none !important;
+  --tw-ring-shadow: none !important;
+}
+
+/* Restore focus rings for keyboard navigation only */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.5) !important;
+  outline-offset: 2px !important;
+}
