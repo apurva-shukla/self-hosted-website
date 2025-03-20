@@ -52,6 +52,11 @@ export default function RootLayout({
         <meta name="theme-color" content="#000" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         <link href="https://db.onlinewebfonts.com/c/2b2a0e640a6c016b18b8ff6574a4c75b?family=JJannon" rel="stylesheet" />
+        
+        {/* Google Fonts optimization */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
       </head>
       <body>
         <Navigation />

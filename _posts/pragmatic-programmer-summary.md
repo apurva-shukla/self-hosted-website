@@ -23,11 +23,11 @@ ogImage:
 
 ### 1. DRY (Don't Repeat Yourself)
 
-Perhaps the most famous principle from the book, DRY encourages developers to avoid duplication of knowledge, logic, and intent throughout a system. Every piece of knowledge should have a single, unambiguous, authoritative representation.
+> Perhaps the most famous principle from the book, DRY encourages developers to avoid duplication of knowledge, logic, and intent throughout a system. Every piece of knowledge should have a single, unambiguous, authoritative representation.
 
 ### 2. Orthogonality
 
-The authors advocate for creating components that are independent and have a single, well-defined purpose. When you change one part of an orthogonal system, it shouldn't affect unrelated parts.
+The authors advocate for creating components that are independent and have a single, well-defined purpose. When you change one part of an orthogonal system, it shouldn't affect unrelated parts. [Link to the book](https://pragprog.com/titles/tpp/the-pragmatic-programmer/)
 
 ### 3. Tracer Bullets
 

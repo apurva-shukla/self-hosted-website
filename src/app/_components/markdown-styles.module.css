@@ -1,5 +1,6 @@
 .markdown {
-  @apply text-lg leading-relaxed;
+  font-size: 1.175rem;
+  line-height: 1.75;
   font-family: "JJannon", serif;
   letter-spacing: 0.25px;
   text-rendering: optimizeLegibility;
@@ -12,48 +13,102 @@
 .markdown ul,
 .markdown ol,
 .markdown blockquote {
-  @apply my-6;
-  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .markdown h1 {
-  @apply text-4xl md:text-5xl lg:text-6xl font-bold mt-16 mb-6 leading-tight;
+  font-size: 2.25rem;
+  line-height: 1.25;
+  font-weight: 700;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
   font-family: "JJannon", serif;
   letter-spacing: 0.15px;
 }
 
+@media (min-width: 768px) {
+  .markdown h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .markdown h1 {
+    font-size: 3.75rem;
+  }
+}
+
 .markdown h2 {
-  @apply text-3xl mt-12 mb-4 leading-snug;
+  font-size: 1.875rem;
+  line-height: 1.375;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   font-family: "JJannon", serif;
   letter-spacing: 0.2px;
 }
 
 .markdown h3 {
-  @apply text-2xl mt-8 mb-4 leading-snug;
+  font-size: 1.5rem;
+  line-height: 1.375;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   font-family: "JJannon", serif;
   letter-spacing: 0.25px;
 }
 
 .markdown a {
-  @apply text-blue-600 underline;
+  transition: color 0.3s ease;
+  color: #f67543;
+  text-decoration: underline;
+}
+
+.markdown a:hover {
+  color: #ff4800;
+  background-color: rgba(255, 72, 0, 0.1); /* Light orange background */
+  border-radius: 2px; /* Optional: rounds the corners of the highlight */
+  /* padding: 0 2px; Optional: adds a bit of spacing around the text */
 }
 
 .markdown blockquote {
-  @apply border-l-4 border-gray-200 pl-4 italic;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  border-left-width: 6px;
+  border-color: #f89f7b;
+  padding-left: 1rem;
+  font-style: italic;
+  font-family: "Instrument Serif", serif;
 }
 
 .markdown code {
-  @apply bg-gray-100 rounded px-1 py-0.5;
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 
 .markdown pre {
-  @apply bg-gray-100 rounded p-4 overflow-x-auto my-6;
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .markdown ul {
-  @apply list-disc list-inside;
+  list-style-type: disc;
+  list-style-position: inside;
 }
 
 .markdown ol {
-  @apply list-decimal list-inside;
+  list-style-type: decimal;
+  list-style-position: inside;
 }

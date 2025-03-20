@@ -13,8 +13,6 @@ ogImage:
   url: "/assets/blog/preview/cover.jpg"
 ---
 
-# Deep Work: Rules for Focused Success in a Distracted World
-
 ## Book Overview
 
 Cal Newport's "Deep Work" presents a compelling case for the importance of focused, distraction-free work in our increasingly fragmented attention economy. The book defines deep work as "professional activities performed in a state of distraction-free concentration that push your cognitive capabilities to their limit."

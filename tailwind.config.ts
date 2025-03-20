@@ -26,6 +26,7 @@ const config: Config = {
       fontFamily: {
         sans: ['JJannon', 'serif'],
         jjannon: ['JJannon', 'serif'],
+        instrument: ['"Instrument Serif"', 'serif'],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

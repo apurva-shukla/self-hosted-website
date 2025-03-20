@@ -1,7 +1,7 @@
 ---
 title: "Atomic Habits"
 excerpt: "My personal takeaways and insights from James Clear's bestseller on how tiny changes can lead to remarkable results."
-coverImage: "/assets/blog/dynamic-routing/cover.jpg"
+coverImage: "/assets/books/atomic-habits.jpg"
 date: "2023-05-15T05:35:07.322Z"
 category: "Personal Development"
 bookSummary: true
@@ -10,10 +10,8 @@ author:
   name: "Apurva Shukla"
   picture: "/placeholder-profile.jpg"
 ogImage:
-  url: "/assets/blog/dynamic-routing/cover.jpg"
+  url: "/assets/books/atomic-habits.jpg"
 ---
-
-# Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones
 
 ## Book Overview
 
