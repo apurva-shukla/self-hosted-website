@@ -5,10 +5,26 @@ import Navigation from "./_components/navigation";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: `Apurva Shukla's Personal Website`,
-  description: `Welcome to Apurva Shukla's personal website featuring blogs, book summaries, and more.`,
+  title: "Apurva Shukla's Lil Website",
+  description: "My internet corner 🪴",
   openGraph: {
+    title: "Apurva Shukla's Lil Website",
+    description: "My internet corner 🪴",
+    url: "https://ashukla.co",
+    siteName: "Apurva Shukla's Website",
     images: [{ url: HOME_OG_IMAGE_URL }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Apurva Shukla's Lil Website",
+    description: "My internet corner 🪴",
+    images: [HOME_OG_IMAGE_URL],
+    creator: "@ashukla",
+    site: "@ashukla",
+  },
+  alternates: {
+    canonical: "https://ashukla.co",
   },
 };
 
@@ -21,29 +37,33 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link
+          rel="icon"
+          href="/favicon/Copy of Baingan face.png"
+          type="image/png"
+        />
+        <link
           rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
+          href="/favicon/Copy of Baingan face.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/favicon/favicon-32x32.png"
+          href="/favicon/Copy of Baingan face.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/favicon/favicon-16x16.png"
+          href="/favicon/Copy of Baingan face.png"
         />
         <link rel="manifest" href="/favicon/site.webmanifest" />
         <link
           rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
+          href="/favicon/Copy of Baingan face.png"
           color="#000000"
         />
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon/Copy of Baingan face.png" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="msapplication-config"

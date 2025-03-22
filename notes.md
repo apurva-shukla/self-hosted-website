@@ -202,6 +202,49 @@
    - Added font-display: swap for better performance during font loading
    - Ensured consistent typography across all pages
 
+14. **Open Graph Image Update**:
+   - Replaced default Next.js starter blog image for link previews
+   - Created custom OG image (1200×630px) for better social sharing
+   - Updated metadata in root layout.tsx file to use the custom image
+   - Added proper OpenGraph and Twitter card metadata configuration
+   - Configured both title and description to show correctly when shared
+   - Example configuration:
+     ```typescript
+     openGraph: {
+       images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+     }
+     ```
+
+15. **Focus Ring Accessibility Improvements**:
+   - Removed focus rings for mouse clicks while preserving keyboard navigation accessibility
+   - Updated navigation.tsx to use `focus-visible:ring-2` instead of `focus:ring-2`
+   - Added CSS overrides in globals.css to prevent focus rings on mouse interactions
+   - Fixed remaining focus styling with hard refresh after changes
+   - Maintained accessibility best practices for keyboard users
+   - CSS implementation:
+     ```css
+     a:focus:not(:focus-visible) {
+       outline: none !important;
+       box-shadow: none !important;
+     }
+     ```
+
+16. **Domain and Hosting Configuration**:
+   - Registered domain through Cloudflare for cost optimization
+   - Configured DNS in Cloudflare pointing to Vercel hosting:
+     - A records for both root domain and www subdomain to 76.76.21.21
+     - Enabled Cloudflare proxying for CDN benefits
+   - Combined Cloudflare's affordable domain management with Vercel's Next.js hosting
+   - Configured nameservers properly through Cloudflare
+   - Established optimal setup for performance, security, and cost efficiency
+
+17. **Post Title Styling Refinements**:
+   - Modified post title font weight from bold to normal for cleaner appearance
+   - Updated title spacing with margin adjustments (mt-12)
+   - Ensured proper alignment with page content
+   - Improved visual hierarchy on article pages
+   - Created more consistent typography throughout the blog
+
 # Technical Implementation Details:
 1. **Server Component Architecture**:
    - Bookshelf page implemented as a React Server Component
