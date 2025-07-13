@@ -1,8 +1,18 @@
 import Link from "next/link";
 import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
-import { getAllPosts } from "@/lib/api";
+import Image from "next/image";
+import sizeOf from "image-size";
+import path from "path";
+import fs from "fs";
 
 export default function Index() {
+  const imagePath = path.join(
+    process.cwd(),
+    "public/assets/profile/profile.jpg",
+  );
+  const buffer = fs.readFileSync(imagePath);
+  const dimensions = sizeOf(buffer);
+
   return (
     <main className="flex items-center justify-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
       {/* Hero Section */}
@@ -53,10 +63,13 @@ export default function Index() {
         
         {/* Right image - hidden on mobile */}
         <div className="hidden lg:flex w-full lg:w-2/5 items-center justify-center">
-          <img
+          <Image
             src="/assets/profile/profile.jpg"
             alt="Profile of Apurva Shukla"
+            width={dimensions.width}
+            height={dimensions.height}
             className="object-cover w-full h-full rounded-2xl shadow-lg"
+            priority={true}
           />
         </div>
       </section>
