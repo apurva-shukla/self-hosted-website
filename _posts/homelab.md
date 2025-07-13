@@ -2,7 +2,7 @@
 title: "The Two-Door Policy: Securing My Homelab"
 excerpt: "How I used Nginx Proxy Manager and Cloudflare Tunnels to balance easy access and strong security in my self-hosted homelab."
 coverImage: "/assets/blog/homelab/two-door-policy.jpg"
-date: "2024-06-01T00:00:00.000Z"
+date: "2025-07-01T00:00:00.000Z"
 category: "Homelab"
 author:
   name: "Apurva Shukla"

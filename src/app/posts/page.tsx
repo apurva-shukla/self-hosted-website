@@ -1,6 +1,5 @@
-import Container from "@/app/_components/container";
-import { PostPreview } from "@/app/_components/post-preview";
 import { getAllPosts } from "@/lib/api";
+import Link from "next/link";
 
 export const metadata = {
   title: 'Blog',
@@ -8,32 +7,43 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  const posts = getAllPosts();
+  const allPosts = getAllPosts();
+  
+  // Use dummy data for example
+  const posts = [
+    { title: "This is a two line blog title. This is a two line blog title. This is a two line blog title.", date: "2025-June-12" },
+    { title: "This is a one line title", date: "2025-June-12" },
+    { title: "This is a one line title", date: "2025-June-12" },
+    { title: "This is a one line title", date: "2025-June-12" },
+    { title: "This is a one line title", date: "2025-June-12" },
+    { title: "This is a one line title", date: "2025-June-12" },
+    { title: "This is a one line title", date: "2025-June-12" },
+    { title: "This is a one line title", date: "2025-June-12" },
+  ];
   
   return (
-    <main className="py-12">
-      <Container>
-        
-        {posts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mb-12">
-            {posts.map((post) => (
-              <PostPreview
-                key={post.slug}
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-                slug={post.slug}
-                excerpt={post.excerpt}
-              />
-            ))}
+    <main className="relative w-full min-h-screen bg-hero-bg">
+      {/* Header/blog */}
+      <div className="absolute w-[617px] h-[64px] left-32 top-40 font-jjannon font-normal text-[48px] leading-[58px] flex items-center text-primary/10">
+        Apurva Shukla/blog
+      </div>
+      
+      {/* Blog Content Rows */}
+      <div className="absolute w-[1256px] left-32 top-[279px]">
+        {posts.map((post, index) => (
+          <div key={index} className="mb-8">
+            <div className="flex flex-row items-center justify-between">
+              <h2 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light">
+                {post.title}
+              </h2>
+              
+              <span className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light">
+                {post.date}
+              </span>
+            </div>
           </div>
-        ) : (
-          <p className="text-center text-lg text-gray-600 dark:text-gray-400">
-            No posts found. Check back soon!
-          </p>
-        )}
-      </Container>
+        ))}
+      </div>
     </main>
   );
 } 

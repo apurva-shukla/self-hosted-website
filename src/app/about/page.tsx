@@ -1,91 +1,38 @@
-import Container from "@/app/_components/container";
+import Link from "next/link";
 
 export const metadata = {
   title: 'About Me',
-  description: 'Learn more about my background, skills, and interests.',
+  description: 'Learn more about Apurva Shukla',
 };
 
 export default function AboutPage() {
   return (
-    <main className="py-12">
-      <Container>
-        <article className="prose dark:prose-invert mx-auto">
-          {/* <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">About Me</h1> */}
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">Background</h2>
-            <p>
-              [Your background story and professional journey]
-            </p>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">Skills & Expertise</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Languages</h3>
-                <ul>
-                  <li>JavaScript/TypeScript</li>
-                  <li>Python</li>
-                  <li>Java</li>
-                  {/* Add more languages */}
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Frontend</h3>
-                <ul>
-                  <li>React</li>
-                  <li>Next.js</li>
-                  <li>Tailwind CSS</li>
-                  {/* Add more frontend skills */}
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Backend</h3>
-                <ul>
-                  <li>Node.js</li>
-                  <li>Express</li>
-                  <li>PostgreSQL</li>
-                  {/* Add more backend skills */}
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">Experience</h2>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold">Senior Software Engineer</h3>
-                <p className="text-gray-600 dark:text-gray-400">Company Name • 2020 - Present</p>
-                <ul>
-                  <li>Key achievement or responsibility</li>
-                  <li>Another significant contribution</li>
-                  {/* Add more points */}
-                </ul>
-              </div>
-              {/* Add more experience items */}
-            </div>
-          </section>
-
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">Education</h2>
-            <div>
-              <h3 className="text-xl font-semibold">Degree Name</h3>
-              <p className="text-gray-600 dark:text-gray-400">University Name • Graduation Year</p>
-              <p>Brief description or achievements during education</p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold mb-4">Interests & Hobbies</h2>
-            <p>
-              Share a bit about what you enjoy outside of work - this helps create a more
-              personal connection with visitors to your site.
-            </p>
-          </section>
-        </article>
-      </Container>
+    <main className="relative w-full min-h-screen bg-hero-bg">
+      {/* Header with clickable name */}
+      <div className="absolute w-[617px] h-[64px] left-32 top-40 font-jjannon font-normal text-[48px] leading-[58px] flex items-center text-primary/10">
+        <Link href="/" className="text-primary/10 hover:text-primary/20 transition-colors">
+          Apurva Shukla
+        </Link>
+        /about me
+      </div>
+      
+      {/* Content */}
+      <div className="absolute w-[1001px] flex flex-col items-start left-32 top-[279px]">
+        <div className="font-jjannon font-normal text-[20px] leading-[40px] text-black">
+          <p className="mb-6">
+            I'm a NYC-based marketer (and self-taught developer) who blends marketing craft and growth instincts.
+          </p>
+          <p className="mb-6">
+            I currently work at Rippling on GTM innovation/engineering projects to acquire new customers in the US.
+          </p>
+          <p className="mb-6">
+            When I'm not working, you can find me reading, exploring new coffee shops around the city, or tinkering with side projects.
+          </p>
+          <p className="mb-6">
+            This website is one of those projects—a place for me to share my thoughts, reading list, and city recommendations.
+          </p>
+        </div>
+      </div>
     </main>
   );
 } 

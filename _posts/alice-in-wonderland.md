@@ -5,6 +5,7 @@ coverImage: "/placeholder-profile.jpg"
 date: "2023-07-10T14:22:18.456Z"
 category: "Other"
 bookSummary: true
+draft: true
 bookAuthor: "Lewis Carroll"
 author:
   name: "Apurva Shukla"
