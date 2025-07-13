@@ -30,7 +30,7 @@ export default function NYCRecsPage() {
       title: "Favorite Restaurants", 
       places: [
         { 
-          name: "Ba Xugen (Sunset Park)" ,
+          name: "Ba Xuyen (Sunset Park)" ,
           url: "https://maps.app.goo.gl/L4pYMVPK9jRGeDq26" ,
           details : ["Best bahn-mi in the city. Get classic or roast pork. Extra spicy"]
         },
