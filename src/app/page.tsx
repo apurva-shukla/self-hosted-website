@@ -15,7 +15,7 @@ export default function Index() {
               Apurva Shukla
             </h1>
             <p className="font-jjannon font-normal text-[30px] leading-9 text-primary">
-            I’m a full-time, NYC-based growth marketer who pursues software engineering as a serious hobby.
+            NYC-based product manager and marketer, passionate about tinkering with software.
               <br /><br />
               I currently work at <a href="https://www.rippling.com" target="_blank" rel="noopener noreferrer" className="hover-highlight">Rippling</a> on GTM innovation/engineering projects to acquire new customers in the US.
             </p>
