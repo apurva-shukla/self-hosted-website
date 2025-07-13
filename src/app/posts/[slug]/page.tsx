@@ -23,7 +23,7 @@ export default async function Post(props: Params) {
 
   return (
     <PostLayout>
-      <h1 className="w-[1001px] h-[80px] font-jjannon font-normal text-[40px] leading-[48px] text-black mb-8">
+      <h1 className="w-full font-jjannon font-normal text-4xl md:text-6xl leading-tight md:leading-snug text-black mb-8">
         {post.title}
       </h1>
       <PostBody content={content} />
