@@ -37,7 +37,7 @@ export default function Index() {
               <a href="https://x.com/shukla_apurva" target="_blank" rel="noopener noreferrer" aria-label="Link to X profile">
                 <FaXTwitter className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
               </a>
-              <a href="https://github.com/apurvarshukla" target="_blank" rel="noopener noreferrer" aria-label="Link to GitHub profile">
+              <a href="https://github.com/apurva-shukla" target="_blank" rel="noopener noreferrer" aria-label="Link to GitHub profile">
                 <FaGithub className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
               </a>
               <a href="https://www.linkedin.com/in/apurvarshukla/" target="_blank" rel="noopener noreferrer" aria-label="Link to LinkedIn profile">
