@@ -79,7 +79,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <Navigation />
+        {/* Navigation is commented out for homepage redesign */}
+        {/* <Navigation /> */}
         <div className="min-h-screen">{children}</div>
       </body>
     </html>

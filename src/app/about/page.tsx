@@ -1,5 +1,4 @@
 import Container from "@/app/_components/container";
-import Image from "next/image";
 
 export const metadata = {
   title: 'About Me',
@@ -12,17 +11,6 @@ export default function AboutPage() {
       <Container>
         <article className="prose dark:prose-invert mx-auto">
           {/* <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">About Me</h1> */}
-          
-          <div className="mb-12">
-            <Image
-              src="/placeholder-profile.jpg"
-              alt="Profile Photo"
-              width={300}
-              height={300}
-              className="rounded-lg mx-auto"
-              priority
-            />
-          </div>
 
           <section className="mb-12">
             <h2 className="text-2xl font-bold mb-4">Background</h2>
