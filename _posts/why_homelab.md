@@ -2,7 +2,7 @@
 title: "Beyond the Code: Why I Built a Homelab"
 excerpt: "Exploring the philosophy and personal motivations behind running a self-hosted homelab, and how it fosters digital ownership, privacy, and intentional technology use."
 coverImage: "/assets/blog/homelab/two-door-policy.jpg"
-date: "2024-06-01T00:00:00.000Z"
+date: "2025-07-05T00:00:00.000Z"
 category: "Homelab"
 author:
   name: "Apurva Shukla"
@@ -10,7 +10,7 @@ author:
 ogImage:
   url: "/assets/blog/homelab/two-door-policy.jpg"
 ---
-In my last post ([The Two-Door Policy: Securing My Homelab for Convenience and Control](/homelab)), I detailed the **how** of my homelab setup—the dual-access system of reverse proxies and Cloudflare Tunnels that securely opened my digital world. But the how is only half the story. The more interesting question is the **why**. Why spend hours wrangling YAML files and IP addresses when I could just click "subscribe" on a dozen different cloud services?
+In my last post ([The Two-Door Policy: Securing My Homelab for Convenience and Control](/posts/homelab)), I detailed the **how** of my homelab setup—the dual-access system of reverse proxies and Cloudflare Tunnels that securely opened my digital world. But the how is only half the story. The more interesting question is the **why**. Why spend hours wrangling YAML files and IP addresses when I could just click "subscribe" on a dozen different cloud services?
 
 ## Digital De-Growth and Ownership
 

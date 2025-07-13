@@ -19,6 +19,19 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "JJannon";
+  src: url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.eot");
+  src: url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/2b2a0e640a6c016b18b8ff6574a4c75b.svg#JJannon")format("svg");
+  font-display: swap;
+  font-weight: 450;
+  font-style: normal;
+}
+
 /* Base body styling */
 body {
   font-family: "JJannon", serif !important;
@@ -28,6 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #373737;
+  background-color: #F2F2E1;
 }
 
 /* Instrument Serif font styles */
@@ -95,4 +109,40 @@ select:focus-visible,
 textarea:focus-visible {
   outline: 2px solid rgba(59, 130, 246, 0.5) !important;
   outline-offset: 2px !important;
+}
+
+h1 {
+  position: relative;
+  font-size: 5rem;
+}
+
+/* Custom Animation Class */
+.hover-highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.hover-highlight::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(219, 206, 206, 1);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform .2s ease;
+}
+
+.hover-highlight:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+html {
+  block-size: 100%;
+  inline-size: 100%;
 }

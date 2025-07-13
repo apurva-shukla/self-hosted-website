@@ -22,6 +22,30 @@ const config: Config = {
         xl: '1280px',
       },
     },
+    gridColumn: {
+      'span-1': 'span 1 / span 1',
+      'span-2': 'span 2 / span 2',
+      'span-3': 'span 3 / span 3',
+      'span-4': 'span 4 / span 4',
+      'span-5': 'span 5 / span 5',
+      'span-6': 'span 6 / span 6',
+      'span-7': 'span 7 / span 7',
+      'span-8': 'span 8 / span 8',
+      'span-9': 'span 9 / span 9',
+      'span-10': 'span 10 / span 10',
+      'span-11': 'span 11 / span 11',
+      'span-12': 'span 12 / span 12',
+      'span-full': 'span 1 / -1',
+    },
+    gridTemplateColumns: {
+      '12': 'repeat(12, minmax(0, 1fr))',
+    },
+    gridTemplateRows: {
+      '12': 'repeat(12, minmax(0, 1fr))',
+    },
+    gridGap: {
+      '20': '20px',
+    },
     extend: {
       fontFamily: {
         sans: ['JJannon', 'serif'],
@@ -39,6 +63,9 @@ const config: Config = {
         "accent-7": "#333",
         success: "#0070a4",
         cyan: "#79FFE1",
+        "hero-bg": "#F2F2E1",
+        "primary": "#800505",
+        "primary-light": "#764444",
         // Category colors
         category: {
           all: "#3b82f6",         // blue-500
