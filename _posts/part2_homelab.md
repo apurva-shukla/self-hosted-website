@@ -1,8 +1,8 @@
 ---
-title: "Beyond the Code: Why I Built a Homelab"
+title: "Part 2: Why I Built a homeserver / homelab"
 excerpt: "Exploring the philosophy and personal motivations behind running a self-hosted homelab, and how it fosters digital ownership, privacy, and intentional technology use."
 coverImage: "/assets/blog/homelab/two-door-policy.jpg"
-date: "2025-07-05T00:00:00.000Z"
+date: "2025-06-20T00:00:00.000Z"
 category: "Homelab"
 author:
   name: "Apurva Shukla"
@@ -10,7 +10,7 @@ author:
 ogImage:
   url: "/assets/blog/homelab/two-door-policy.jpg"
 ---
-In my last post ([The Two-Door Policy: Securing My Homelab for Convenience and Control](/posts/homelab)), I detailed the **how** of my homelab setup—the dual-access system of reverse proxies and Cloudflare Tunnels that securely opened my digital world. But the how is only half the story. The more interesting question is the **why**. Why spend hours wrangling YAML files and IP addresses when I could just click "subscribe" on a dozen different cloud services?
+In my last [post](/posts/part1_homelab), I detailed the **how** of my homelab setup—the dual-access system of reverse proxies and Cloudflare Tunnels that securely opened my digital world. But the how is only half the story. The more interesting question is the **why**. Why spend hours wrangling YAML files and IP addresses when I could just click "subscribe" on a dozen different cloud services?
 
 ## Digital De-Growth and Ownership
 
@@ -33,5 +33,8 @@ This philosophy extends to the smallest corners of my digital life. I used to us
 Of course, the journey itself was the real reward. Building this homestead forced me to become more than just a developer. I wasn't just installing apps; I was becoming a sysadmin, a network engineer, and a security architect. The abstract concepts from tutorials suddenly became tangible realities. I wrestled with DNS propagation, configured firewall rules, learned the crucial difference between containers and VMs, and navigated the intricate dance of a multi-layered proxy chain. The "400 Bad Request" errors weren't bugs; they were lessons in how applications establish trust.
 
 ## Conclusion: A Conscious Choice
+
+<img src="/assets/blog/homelab/proxmox.png" alt="Proxmox virtual containers" class="blog-image">
+<small class="image-caption">A mini-army of personal servers</small>
 
 My Proxmox server isn't just a powerful machine running in a corner. It's a conscious choice—a vote for open-source communities, for data privacy, and for a deeper understanding of the technology that shapes our lives. It’s my workshop, my classroom, and my quiet corner of the internet. And it all started with wanting to own a little piece of it for myself.

@@ -1,5 +1,5 @@
 ---
-title: "The Two-Door Policy: Securing My Homelab"
+title: "Part 3: The Two-Door Policy: Securing My Homelab"
 excerpt: "How I used Nginx Proxy Manager and Cloudflare Tunnels to balance easy access and strong security in my self-hosted homelab."
 coverImage: "/assets/blog/homelab/two-door-policy.jpg"
 date: "2025-07-01T00:00:00.000Z"
@@ -18,7 +18,7 @@ It was time to build a door.
 
 My initial plan was straightforward. I set up a new Proxmox LXC container to run **Nginx Proxy Manager (NPM)**, my new digital traffic cop. After pointing my domain (⁠ashukla.com) to my home IP via Cloudflare, I configured NPM to route subdomains to the right internal services.  
 - `ha.ashukla.co` would point to Home Assistant's IP and port  
-- `kara.ashukla.co` to my notes service  
+- `kara.ashukla.co` to my bookmarking service
 - and so on.
 
 NPM handled the SSL certificates automatically, transforming ugly `http://192.168.x.x:port` addresses into clean, secure `https` URLs. After some satisfying troubleshooting—getting Home Assistant to trust my proxy's `X-Forwarded-For` headers—the front door to my lab was officially open for business.
@@ -44,4 +44,6 @@ This hybrid approach gives me the best of both worlds: frictionless access when 
 
 ---
 
-Now that the foundation is solid, what’s next? Well, `ashukla.com` needs a website, doesn't it?
+Now that the foundation is solid, what’s next? Well, `ashukla.com` needs a website, doesn't it? 
+
+*All parts of this homelab series were written while I was building the system. I am aware there are significant omissions in these posts, and I will address them as I continue writing and developing this website.*

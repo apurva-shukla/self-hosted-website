@@ -146,3 +146,22 @@ html {
   block-size: 100%;
   inline-size: 100%;
 }
+
+.image-caption {
+  display: block;
+  text-align: center;
+  font-size: 1rem; /* 14px */
+  margin-top: 0.5rem;
+  margin-bottom: 10px;
+  color: #6b7280; /* text-gray-500 */
+}
+
+.blog-image {
+  margin-top: 20px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
