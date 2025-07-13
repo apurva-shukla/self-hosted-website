@@ -12,32 +12,32 @@ export default function BlogPage() {
   const posts = allPosts.filter(post => !post.bookSummary);
   
   return (
-    <main className="relative w-full min-h-screen bg-hero-bg">
-      {/* Header/blog with clickable name */}
-      <div className="absolute w-[617px] h-[64px] left-32 top-40 font-jjannon font-normal text-[48px] leading-[58px] flex items-center text-primary/10">
-        <Link href="/" className="text-primary/10 hover:text-primary hover:underline transition-colors">
-          Apurva Shukla
-        </Link>
-        /blog
-      </div>
-      
-      {/* Blog Content Rows */}
-      <div className="absolute w-[1256px] left-32 top-[279px] h-auto">
-        {posts.map((post, index) => (
-          <div key={index} className="absolute w-[1256px] h-[58px]" style={{ top: `${index * 88}px` }}>
-            <div className="flex flex-row items-center justify-between">
-              <h2 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light">
+    <main className="flex flex-col items-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
+      <div className="w-full max-w-4xl">
+        {/* Header/blog with clickable name */}
+        <div className="mb-12 font-jjannon font-normal text-[32px] sm:text-[48px] leading-tight text-primary/10">
+          <Link href="/" className="hover:text-primary hover:underline transition-colors">
+            Apurva Shukla
+          </Link>
+          /blog
+        </div>
+        
+        {/* Blog Content Rows */}
+        <div className="flex flex-col gap-8">
+          {posts.map((post) => (
+            <div key={post.slug} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <h2 className="font-jjannon font-normal text-[20px] sm:text-[24px] leading-tight text-primary-light w-full sm:w-2/3">
                 <Link href={`/posts/${post.slug}`} className="hover:underline">
                   {post.title}
                 </Link>
               </h2>
               
-              <span className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light/50">
+              <span className="font-jjannon font-normal text-[16px] sm:text-[20px] leading-tight text-primary-light/50 text-left sm:text-right w-full sm:w-1/3">
                 <DateFormatter dateString={post.date} />
               </span>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </main>
   );

@@ -4,41 +4,44 @@ import { getAllPosts } from "@/lib/api";
 
 export default function Index() {
   return (
-    <main className="flex flex-col min-h-screen overflow-x-hidden w-full bg-hero-bg">
+    <main className="flex items-center justify-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen">
-        <div className="absolute w-[617px] flex flex-col gap-20 left-32 top-40">
+      <section className="flex flex-col lg:flex-row gap-12 lg:gap-24 w-full max-w-6xl">
+        {/* Left Content */}
+        <div className="w-full lg:w-3/5 flex flex-col gap-12">
+          {/* Bio */}
           <div className="flex flex-col gap-6">
             <h1 className="font-jjannon font-normal text-[48px] leading-[58px] text-primary">
               Apurva Shukla
             </h1>
             <p className="font-jjannon font-normal text-[30px] leading-9 text-primary">
-            I’m a full-time, NYC-based growth marketer who pursues software engineering as a serious hobby.
+              I'm a NYC-based marketer (and self-taught developer) who blends marketing craft and growth instincts.
               <br /><br />
               I currently work at <a href="https://www.rippling.com" target="_blank" rel="noopener noreferrer" className="hover-highlight">Rippling</a> on GTM innovation/engineering projects to acquire new customers in the US.
-              
             </p>
           </div>
           
-          <div className="relative w-full h-auto">
-            <Link href="/blog" className="absolute top-0 left-0 font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
-              &gt; blog
-            </Link>
-            <Link href="/bookshelf" className="absolute top-[39px] left-0 font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
-              &gt; bookshelf
-            </Link>
-            <Link href="/nyc-recs" className="absolute top-[78px] left-0 font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
-              &gt; nyc recs
-            </Link>
-            <Link href="/about" className="absolute top-[117px] left-0 font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
-              &gt; about me
-            </Link>
-
-            <div className="absolute top-[180px] left-0 flex flex-row gap-6">
+          {/* Links & Socials */}
+          <div className="flex flex-col items-start gap-8">
+            <div className="flex flex-col items-start gap-2">
+                <Link href="/blog" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                  &gt; blog
+                </Link>
+                <Link href="/bookshelf" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                  &gt; bookshelf
+                </Link>
+                <Link href="/nyc-recs" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                  &gt; nyc recs
+                </Link>
+                <Link href="/about" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                  &gt; about me
+                </Link>
+            </div>
+            <div className="flex flex-row gap-6">
               <a href="https://x.com/shukla_apurva" target="_blank" rel="noopener noreferrer" aria-label="Link to X profile">
                 <FaXTwitter className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
               </a>
-              <a href="https://github.com/apurva-shukla" target="_blank" rel="noopener noreferrer" aria-label="Link to GitHub profile">
+              <a href="https://github.com/apurvarshukla" target="_blank" rel="noopener noreferrer" aria-label="Link to GitHub profile">
                 <FaGithub className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
               </a>
               <a href="https://www.linkedin.com/in/apurvarshukla/" target="_blank" rel="noopener noreferrer" aria-label="Link to LinkedIn profile">
@@ -48,8 +51,8 @@ export default function Index() {
           </div>
         </div>
         
-        {/* Hero right image */}
-        <div className="absolute w-[490px] h-[648px] left-[894px] top-40 flex items-center justify-center">
+        {/* Right image - hidden on mobile */}
+        <div className="hidden lg:flex w-full lg:w-2/5 items-center justify-center">
           <img
             src="/assets/profile/profile.jpg"
             alt="Profile of Apurva Shukla"

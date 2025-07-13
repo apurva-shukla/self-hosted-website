@@ -12,48 +12,44 @@ export default function Page() {
   const books = allPosts.filter((post) => post.bookSummary);
 
   return (
-    <main className="relative w-full min-h-screen bg-hero-bg">
-      {/* Header/bookshelf with clickable name */}
-      <div className="absolute w-[617px] h-[64px] left-32 top-40 font-jjannon font-normal text-[48px] leading-[58px] flex items-center text-primary/10">
-        <Link href="/" className="text-primary/10 hover:text-primary hover:underline transition-colors">
-          Apurva Shukla
-        </Link>
-        /
-        <Link href="/bookshelf" className="hover:underline hover:text-primary transition-colors">
-          bookshelf
-        </Link>
-      </div>
-      
-      {/* Bookshelf Content Rows */}
-      <div className="absolute w-[1256px] h-auto left-32 top-[279px]">
-        {books.map((book, index) => (
-          <div key={index} className="absolute w-[1256px] h-[58px]" style={{ top: `${index * 88}px` }}>
-            <div className="flex flex-row items-center gap-5">
-              {/* Heading */}
-              <div className="flex flex-row items-center w-[746px] h-[58px]">
-                <h2 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light">
-                  <Link href={`/posts/${book.slug}`} className="hover:underline">
-                    {book.title}
-                  </Link>
-                </h2>
-              </div>
+    <main className="flex flex-col items-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
+      <div className="w-full max-w-4xl">
+        {/* Header/bookshelf with clickable name */}
+        <div className="mb-12 font-jjannon font-normal text-[32px] sm:text-[48px] leading-tight text-primary/10">
+          <Link href="/" className="hover:text-primary hover:underline transition-colors">
+            Apurva Shukla
+          </Link>
+          /
+          <Link href="/bookshelf" className="hover:underline hover:text-primary transition-colors">
+            bookshelf
+          </Link>
+        </div>
+        
+        {/* Bookshelf Content Rows */}
+        <div className="flex flex-col gap-8">
+          {books.map((book) => (
+            <div key={book.slug} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              {/* Title */}
+              <h2 className="font-jjannon font-normal text-[20px] sm:text-[24px] leading-tight text-primary-light w-full sm:w-2/3">
+                <Link href={`/posts/${book.slug}`} className="hover:underline">
+                  {book.title}
+                </Link>
+              </h2>
               
-              {/* Tag */}
-              <div className="flex flex-row justify-start items-center w-[235px] h-[29px]">
-                <span className="font-jjannon font-normal text-[24px] leading-[29px] text-left text-primary-light/50">
+              <div className="flex flex-row sm:flex-col md:flex-row justify-between items-start md:items-center w-full sm:w-1/3 gap-4 md:gap-0">
+                {/* Category */}
+                <span className="font-jjannon font-normal text-[16px] sm:text-[20px] leading-tight text-primary-light/50 text-left w-full md:w-1/2">
                   {book.category}
                 </span>
-              </div>
-              
-              {/* Date */}
-              <div className="flex flex-row justify-end items-center w-[235px] h-[29px]">
-                <span className="font-jjannon font-normal text-[24px] leading-[29px] text-right text-primary-light/50">
+                
+                {/* Date */}
+                <span className="font-jjannon font-normal text-[16px] sm:text-[20px] leading-tight text-primary-light/50 text-left md:text-right w-full md:w-1/2">
                   <DateFormatter dateString={book.date} />
                 </span>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </main>
   );

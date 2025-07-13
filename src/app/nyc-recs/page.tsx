@@ -14,7 +14,7 @@ export default function NYCRecsPage() {
         { 
           name: "Cotton Bean (Crown Heights)",
           details: [
-            "I loved around the block and this place had my heart. They are run by a Japanese family that lives in the unit above. The Japanese know how to make a place cool live-in and cool."
+            "I lived around the block and this place had my heart. They are run by a Japanese family that lives in the unit above. The Japanese know how to make a place cool live-in and cool."
             , "They attract all the hipsters of the block, but it's still low-key. I love their hazelnut pretzel pastry."
         ]
         },
@@ -41,61 +41,54 @@ export default function NYCRecsPage() {
         }
       ]
     },
-    // { 
-    //   title: "Places to Visit", 
-    //   places: [
-    //     { name: "The High Line" }, 
-    //     { name: "Brooklyn Botanic Garden" }, 
-    //     { name: "The Morgan Library" }, 
-    //     { name: "The Cloisters" }
-    //   ]
-    // },
   ];
   
   return (
-    <main className="relative w-full min-h-screen bg-hero-bg">
-      {/* Header with clickable name */}
-      <div className="absolute w-[617px] h-[64px] left-32 top-40 font-jjannon font-normal text-[48px] leading-[58px] flex items-center text-primary/10">
-        <Link href="/" className="text-primary/10 hover:text-primary hover:underline transition-colors">
-          Apurva Shukla
-        </Link>
-        /nyc recs
-      </div>
-      
-      {/* Content */}
-      <div className="absolute w-[1001px] flex flex-col items-start left-32 top-[279px]">
-        {recommendations.map((category, index) => (
-          <div key={index} className="mb-12">
-            <h2 className="font-jjannon font-normal text-[30px] leading-[36px] text-primary mb-4">
-              {category.title}
-            </h2>
-            <ul className="pl-6">
-              {category.places.map((place, placeIndex) => (
-                <li 
-                  key={placeIndex} 
-                  className="font-jjannon font-normal text-[24px] leading-[40px] text-primary-light list-disc"
-                >
-                  {place.url ? (
-                    <a href={place.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                      {place.name}
-                    </a>
-                  ) : (
-                    place.name
-                  )}
-                  {place.details && (
-                    <ul className="list-disc pl-12 mt-2 text-[20px]">
-                      {place.details.map((detail, detailIndex) => (
-                        <li key={detailIndex} className="text-primary-light/90">
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <main className="flex flex-col items-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
+      <div className="w-full max-w-4xl">
+        {/* Header with clickable name */}
+        <div className="mb-12 font-jjannon font-normal text-[32px] sm:text-[48px] leading-tight text-primary/10">
+          <Link href="/" className="hover:text-primary hover:underline transition-colors">
+            Apurva Shukla
+          </Link>
+          /nyc recs
+        </div>
+        
+        {/* Content */}
+        <div className="flex flex-col gap-12">
+          {recommendations.map((category, index) => (
+            <div key={index}>
+              <h2 className="font-jjannon font-normal text-[28px] sm:text-[30px] leading-tight text-primary mb-4">
+                {category.title}
+              </h2>
+              <ul className="pl-6 flex flex-col gap-6">
+                {category.places.map((place, placeIndex) => (
+                  <li 
+                    key={placeIndex} 
+                    className="font-jjannon font-normal text-[20px] sm:text-[24px] leading-normal text-primary-light list-disc"
+                  >
+                    {place.url ? (
+                      <a href={place.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                        {place.name}
+                      </a>
+                    ) : (
+                      place.name
+                    )}
+                    {place.details && (
+                      <ul className="list-disc pl-8 sm:pl-12 mt-2 text-[18px] sm:text-[20px] leading-relaxed">
+                        {place.details.map((detail, detailIndex) => (
+                          <li key={detailIndex} className="text-primary-light/90">
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
