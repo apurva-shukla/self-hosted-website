@@ -54,3 +54,30 @@
 //     </main>
 //   );
 // }
+
+import Link from 'next/link';
+
+export const metadata = {
+  title: 'Bookshelf',
+  description: 'A list of books I have read and recommend. This page is a work in progress.',
+};
+
+export default function BookshelfPage() {
+  return (
+    <main className="flex flex-col items-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
+      <div className="w-full max-w-4xl">
+        <div className="mb-12 font-jjannon font-normal text-[32px] sm:text-[48px] leading-tight text-primary/10">
+          <Link href="/" className="hover:text-primary hover:underline transition-colors">
+            Apurva Shukla
+          </Link>
+          /bookshelf
+        </div>
+        
+        <div className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light">
+          <p>This page is currently under construction.</p>
+          <p>Please check back later for a curated list of my favorite books.</p>
+        </div>
+      </div>
+    </main>
+  );
+}
