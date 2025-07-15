@@ -29,7 +29,7 @@ ogImage:
 - [Herman Miller Embody Chair](https://www.hermanmiller.com/products/seating/embod-chair)
   - I got this chair six months ago, and it's been alright. I use Aeron at work, and I like its mesh back and plushy arm rests a lot more.
 
-### MacOS applications (in order of value to me)
+### MacOS applications (ORDER BY VALUE DESC)
 
 - [BetterTouchTool](https://folivora.ai/bettertouchtool)
   - My #1 app for customizing my keyboard, trackpad and Magic Mouse. I gladly paid for a lifetime license (and would pay it several times over if need be).
@@ -45,7 +45,7 @@ ogImage:
   - The window/tiling manager I use to manage my windows. I don't know how I lived without it. I love MacOS, but never liked how disorganized the window management was. Yabai fixed that for me. 
   - It's possible to customize it a lot, however I have a rather simple setup developed over an hour on a weekend.
 - [VoiceInk](https://voiceink.app/)
-  - My preferred voice to text app. I liked Superwhisper but did not want to pay a hefty subscription fee. VoiceInk has a generous free tier, but I paid for a lifetime license for me and my partner. 
+  - My preferred voice to text app. I liked Superwhisper but did not want to pay a subscription fee. VoiceInk has a generous free tier, but I paid for a lifetime license for me and my partner. 
 - [HomeRow](https://home-row.app/)
   - I use it as a launcher for triggering any action on my screen.
   - It's a delight to use and somehow not widely known.
