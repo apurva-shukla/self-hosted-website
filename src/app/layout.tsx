@@ -1,6 +1,7 @@
 import { HOME_OG_IMAGE_URL } from "@/lib/constants";
 import { Metadata } from "@/lib/types";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -80,7 +81,8 @@ export default function RootLayout({
       </head>
       <body className="bg-hero-bg">
         <div className="min-h-screen">{children}</div>
-        <SpeedInsights/>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
