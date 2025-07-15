@@ -6,9 +6,9 @@ import markdownToHtml from "@/lib/markdownToHtml";
 import PostLayout from "@/app/_components/post-layout";
 import { PostBody } from "@/app/_components/post-body";
 
-export default async function Post(props: Params) {
-  const params = await props.params;
-  const post = getPostBySlug(params.slug);
+export default async function Post({ params }: { params: { slug: string[] } }) {
+  const slug = params.slug.join('/');
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return notFound();
@@ -32,14 +32,14 @@ export default async function Post(props: Params) {
 }
 
 type Params = {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: {
+    slug: string[];
+  };
 };
 
-export async function generateMetadata(props: Params): Promise<Metadata> {
-  const params = await props.params;
-  const post = getPostBySlug(params.slug);
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const slug = params.slug.join('/');
+  const post = getPostBySlug(slug);
 
   if (!post || (post.draft && process.env.NODE_ENV === 'production')) {
     return notFound();
@@ -60,7 +60,13 @@ export async function generateStaticParams() {
   // Only generate pages for non-draft posts
   const posts = getAllPosts();
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts.map((post) => {
+    const slugAsArray = post.slug.includes('/') 
+      ? post.slug.split('/') 
+      : [post.slug];
+      
+    return {
+      slug: slugAsArray,
+    };
+  });
 }

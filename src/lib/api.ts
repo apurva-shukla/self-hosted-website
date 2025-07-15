@@ -1,12 +1,33 @@
 import { Post } from "@/interfaces/post";
 import fs from "fs";
 import matter from "gray-matter";
-import { join } from "path";
+import { join, relative } from "path";
 
 const postsDirectory = join(process.cwd(), "_posts");
 
 export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+  // A recursive function to find all markdown files
+  const findMarkdownFiles = (dir: string): string[] => {
+    let files: string[] = [];
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files = files.concat(findMarkdownFiles(fullPath));
+      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+        files.push(fullPath);
+      }
+    }
+    return files;
+  };
+
+  const allFilePaths = findMarkdownFiles(postsDirectory);
+
+  // Convert full paths to slugs (relative paths without .md)
+  return allFilePaths.map((path) =>
+    relative(postsDirectory, path).replace(/\.md$/, "")
+  );
 }
 
 export function getPostBySlug(slug: string) {

@@ -37,10 +37,13 @@ export default function Index() {
                 <Link href="/blog" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
                   &gt; blog
                 </Link>
-                <Link href="/bookshelf" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                {/* <Link href="/bookshelf" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
                   &gt; bookshelf
+                </Link> */}
+                <Link href="/posts/uses-this/uses-this" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                  &gt; uses this
                 </Link>
-                <Link href="/nyc-recs" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                <Link href="/posts/nyc-recs/nyc-recs" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
                   &gt; nyc recs
                 </Link>
                 <Link href="/about" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
