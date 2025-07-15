@@ -1,4 +1,4 @@
-import { Metadata } from "@/lib/types";
+import { Metadata, PageProps } from "@/lib/types";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { CMS_NAME } from "@/lib/constants";
@@ -6,8 +6,8 @@ import markdownToHtml from "@/lib/markdownToHtml";
 import PostLayout from "@/app/_components/post-layout";
 import { PostBody } from "@/app/_components/post-body";
 
-export default async function Post({ params }: { params: { slug: string[] } }) {
-  const slug = params.slug.join('/');
+export default async function Post({ params }: PageProps) {
+  const slug = Array.isArray(params.slug) ? params.slug.join('/') : params.slug;
   const post = getPostBySlug(slug);
 
   if (!post) {
@@ -31,14 +31,8 @@ export default async function Post({ params }: { params: { slug: string[] } }) {
   );
 }
 
-type Params = {
-  params: {
-    slug: string[];
-  };
-};
-
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const slug = params.slug.join('/');
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const slug = Array.isArray(params.slug) ? params.slug.join('/') : params.slug;
   const post = getPostBySlug(slug);
 
   if (!post || (post.draft && process.env.NODE_ENV === 'production')) {
