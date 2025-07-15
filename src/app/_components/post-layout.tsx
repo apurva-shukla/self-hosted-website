@@ -2,9 +2,16 @@ import Link from "next/link";
 
 type Props = {
   children: React.ReactNode;
+  breadcrumb?: {
+    text: string;
+    href: string;
+  };
 };
 
-export default function PostLayout({ children }: Props) {
+export default function PostLayout({ children, breadcrumb }: Props) {
+  const breadcrumbText = breadcrumb?.text ?? 'blog';
+  const breadcrumbHref = breadcrumb?.href ?? '/blog';
+
   return (
     <main className="flex flex-col items-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
       <div className="w-full max-w-4xl">
@@ -14,8 +21,8 @@ export default function PostLayout({ children }: Props) {
             Apurva Shukla
           </Link>
           /
-          <Link href="/blog" className="hover:underline hover:text-primary transition-colors">
-            blog
+          <Link href={breadcrumbHref} className="hover:underline hover:text-primary transition-colors">
+            {breadcrumbText}
           </Link>
         </div>
         
