@@ -29,3 +29,16 @@ export interface Metadata {
   };
   [key: string]: any;
 } 
+
+export interface PhotoEvent {
+  slug: string;
+  caption: string;
+  images: string[];
+} 
+
+export interface Photo {
+  src: string;
+  width: number;
+  height: number;
+  caption: string;
+} 

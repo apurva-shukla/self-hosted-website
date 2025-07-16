@@ -15,4 +15,4 @@ export default async function UsesThisPage() {
       </MdxLayout>
     </PostLayout>
   );
-} 
+}  

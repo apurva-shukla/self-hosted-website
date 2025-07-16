@@ -67,6 +67,12 @@ export default function Index() {
                 &gt; nyc recs
               </Link>
               <Link
+                href="/photos"
+                className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
+              >
+                &gt; photos
+              </Link>
+              <Link
                 href="/about"
                 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
               >

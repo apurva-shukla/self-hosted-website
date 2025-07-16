@@ -10,14 +10,19 @@ author:
 ogImage:
   url: "/assets/blog/homelab/two-door-policy.jpg"
 ---
-My digital life felt... rented. Bookmarks in one cloud, smart home logic in another, reading lists in a third. I was a tenant on a dozen platforms—my data scattered, my control an illusion. So I bought a modest Cilate Mini PC (16GB RAM, 500GB SSD). Not to build a data center, but to claim a small plot of digital land for myself. This is the story of that homestead.
+*This is part 1 of a series of posts about my homelab that explains the process of setting it up. [Part 2](/posts/live_part2_homelab) does into my motiviations, and [Part 3](/posts/live_part3_homelab) explains how I setup a two-door policy to secure it.*
+
+For a long time, my digital life felt like I was just renting space. Two years ago, I realized I was paying for Netflix and Hulu, yet rarely watching anything that truly inspired me. I felt trapped by recommendation algorithms, so I switched to Stremio with RealDebrid. Cutting out streaming subscriptions was liberating—and nudged me closer to the world of self-hosting.
+
+Lately, the fragmentation became impossible to ignore: bookmarks in one cloud, smart home routines in Philips Hue, reading lists in Obsidian, and more. My data was scattered across a dozen platforms, and any sense of control was just an illusion. That’s when I decided to buy a modest Cilate Mini PC (16GB RAM, 500GB SSD). I wasn’t aiming to build a data center—just to carve out a small, personal plot of digital land. This is the story of that homestead.
+
 <img src="/assets/blog/homelab/ebay.png" alt="Ebay purchase screenshot" class="blog-image">
 <small class="image-caption">$100 I'd spent again in a heartbeat</small>
 
 <img src="/assets/blog/homelab/minipc.jpg" alt="Tiny little guy" class="blog-image">
 <small class="image-caption">The tiny little guy.</small>
 
-The foundation of my setup is **Proxmox VE**. On this single Mini PC, I run a small ecosystem of isolated services inside lightweight LXC containers. Each container has a clear purpose—a quiet stand against digital dependence:
+At the core of this mini PC is **Proxmox VE**. On it, a run a bunch of isolated services inside lightweight LXC containers. Each container has a clear purpose—a quiet stand against digital dependence:
 
 <img src="/assets/blog/homelab/proxmox.png" alt="Proxmox virtual containers" class="blog-image">
 <small class="image-caption">A mini-army of personal servers</small>
@@ -27,7 +32,7 @@ The foundation of my setup is **Proxmox VE**. On this single Mini PC, I run a sm
 - **Nginx Proxy Manager (NPM):** The front gate. A reverse proxy that turns clean, public-facing URLs into the right internal IPs and ports, wrapping everything in secure SSL certificates.
 - **Karakeep & Calibre-Web:** My libraries—one for bookmarks, one for ebooks. Simple, open-source, and entirely mine. My data isn’t building a profile for someone else; it’s just my stuff.
 
-The real journey began when I decided to open the gate. I configured NPM to expose my services, creating subdomains like `home-assistant.ashukla.co` (this is just an example - I am not revealing the real sub-domains). This led to my first real lesson: the proxy chain. An “Error 400: Bad Request” from Home Assistant wasn’t a bug—it was a security feature. I had to learn about `trusted_proxies` and how to properly configure `configuration.yaml` to accept requests from my proxy.
+Along this ride, I got sucked into the networking rabbit hole. I configured NPM to expose my services, creating subdomains like `home-assistant.ashukla.co` (*this is just an example - I am not revealing the real sub-domains*). This led to my first real lesson: the proxy chain. An “Error 400: Bad Request” from Home Assistant wasn’t a bug—it was a security feature. I had to learn about `trusted_proxies` and how to properly configure `configuration.yaml` to accept requests from my proxy.
 
 Then came the “Wait a minute...” moment. I was about to expose my Proxmox admin panel the same way. That felt wrong. This led to the project’s central architectural decision: a **Two-Door Policy** (which I wrote more about [here](/posts/part3_homelab)).
 
