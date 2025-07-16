@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
 import CardStack from "./_components/card-stack";
+import Image from "next/image";
 
 export default function Index() {
+  const showCardStack = false; // Toggle this to show/hide the card stack vs. static image
+
   const images = [
     { id: 1, img: "/assets/homepage/homepage1.png" },
     { id: 2, img: "/assets/homepage/homepage2.png" },
@@ -14,7 +17,7 @@ export default function Index() {
       {/* Hero Section */}
       <section className="flex flex-col lg:flex-row gap-12 lg:gap-24 w-full max-w-6xl">
         {/* Left Content */}
-        <div className="w-full lg:w-3/5 flex flex-col flex-grow justify-between">
+        <div className="w-full lg:w-3/5 flex flex-col gap-24">
           {/* Bio */}
           <div className="flex flex-col gap-6">
             <h1 className="font-jjannon font-normal text-[48px] leading-[58px] text-primary">
@@ -30,19 +33,19 @@ export default function Index() {
           {/* Links & Socials */}
           <div className="flex flex-col items-start gap-8">
             <div className="flex flex-col items-start gap-2">
-                <Link href="/blog" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                <Link href="/blog" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
                   &gt; blog
                 </Link>
                 {/* <Link href="/bookshelf" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
                   &gt; bookshelf
                 </Link> */}
-                <Link href="/uses-this" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                <Link href="/uses-this" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
                   &gt; uses this
                 </Link>
-                <Link href="/nyc-recs" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                <Link href="/nyc-recs" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
                   &gt; nyc recs
                 </Link>
-                <Link href="/about" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
+                <Link href="/about" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
                   &gt; about me
                 </Link>
             </div>
@@ -61,8 +64,19 @@ export default function Index() {
         </div>
         
         {/* Right image - hidden on mobile */}
-        <div className="hidden lg:flex w-full lg:w-2/5 items-center justify-center">
-          <CardStack cardsData={images} cardDimensions={{ width: 350, height: 450 }} />
+        <div className="hidden lg:flex w-full lg:w-2/5 items-start justify-center pt-12">
+          {showCardStack ? (
+            <CardStack cardsData={images} cardDimensions={{ width: 350, height: 450 }} />
+          ) : (
+            <Image
+              src="/assets/profile/profile.jpg"
+              alt="Apurva Shukla profile picture"
+              width={350}
+              height={450}
+              className="rounded-lg object-cover"
+              priority
+            />
+          )}
         </div>
       </section>
     </main>

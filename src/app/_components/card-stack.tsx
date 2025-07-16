@@ -38,23 +38,26 @@ function CardRotate({ children, onSendToBack, sensitivity }) {
 }
 
 export default function CardStack({
-  randomRotation = false,
   sensitivity = 200,
   cardDimensions = { width: 450, height: 600 },
   cardsData = [],
   animationConfig = { stiffness: 260, damping: 20 },
   sendToBackOnClick = false
 }) {
-  const [cards, setCards] = useState(
-    cardsData.length
+  const [cards, setCards] = useState(() => {
+    const initialCards = cardsData.length
       ? cardsData
       : [
-        { id: 1, img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format" },
-        { id: 2, img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format" },
-        { id: 3, img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format" },
-        { id: 4, img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format" }
-      ]
-  );
+          { id: 1, img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format" },
+          { id: 2, img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format" },
+          { id: 3, img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format" },
+          { id: 4, img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format" }
+        ];
+    return initialCards.map((card) => ({
+      ...card,
+      rotation: card.rotation ?? Math.random() * 10 - 5,
+    }));
+  });
 
   const sendToBack = (id) => {
     setCards((prev) => {
@@ -76,10 +79,6 @@ export default function CardStack({
       }}
     >
       {cards.map((card, index) => {
-        const randomRotate = randomRotation
-          ? Math.random() * 10 - 5
-          : 0;
-
         return (
           <CardRotate
             key={card.id}
@@ -90,7 +89,7 @@ export default function CardStack({
               className="card"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
-                rotateZ: (cards.length - index - 1) * 4 + randomRotate,
+                rotateZ: (cards.length - index - 1) * 2 + card.rotation,
                 scale: 1 + index * 0.06 - cards.length * 0.06,
                 transformOrigin: "90% 90%",
               }}
