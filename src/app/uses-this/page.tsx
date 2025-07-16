@@ -1,8 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import markdownToHtml from '@/lib/markdownToHtml';
-import { PostBody } from '@/app/_components/post-body';
 import PostLayout from '../_components/post-layout';
+import MdxLayout from '../_components/mdx-layout';
+import UsesThisContent from '@/_pages/uses-this.mdx';
 
 export const metadata = {
   title: 'Uses This',
@@ -10,13 +8,11 @@ export const metadata = {
 };
 
 export default async function UsesThisPage() {
-  const filePath = path.join(process.cwd(), '_pages', 'uses-this.md');
-  const markdownContent = fs.readFileSync(filePath, 'utf-8');
-  const content = await markdownToHtml(markdownContent);
-
   return (
     <PostLayout breadcrumb={{ text: 'uses-this', href: '/uses-this' }}>
-      <PostBody content={content} />
+      <MdxLayout>
+        <UsesThisContent />
+      </MdxLayout>
     </PostLayout>
   );
 } 
