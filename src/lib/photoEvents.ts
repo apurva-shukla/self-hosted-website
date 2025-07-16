@@ -4,6 +4,7 @@ import sizeOf from 'image-size';
 import { PhotoEvent, Photo } from '@/lib/types';
 
 const PHOTOS_DIR = path.join(process.cwd(), 'public', 'assets', 'photos');
+const METADATA_PATH = path.join(process.cwd(), 'public', 'generated', 'metadata.json');
 
 function isImageFile(fileName: string) {
   return /\.(jpe?g|png|webp|avif)$/i.test(fileName);
@@ -50,6 +51,18 @@ export function getPhotoEvents(): PhotoEvent[] {
 }
 
 export function getAllPhotos(): Photo[] {
+  // Prefer pre-generated metadata for speed
+  if (fs.existsSync(METADATA_PATH)) {
+    try {
+      const raw = fs.readFileSync(METADATA_PATH, 'utf-8');
+      const photos: Photo[] = JSON.parse(raw);
+      return photos.sort((a, b) => (a.src > b.src ? -1 : 1));
+    } catch {
+      // fall through to runtime computation
+    }
+  }
+
+  // Fallback: runtime computation (slower, used mainly during first dev build)
   if (!fs.existsSync(PHOTOS_DIR)) return [];
 
   const eventSlugs = fs
@@ -86,11 +99,17 @@ export function getAllPhotos(): Photo[] {
         const buffer = fs.readFileSync(filePath);
         const dimensions = sizeOf(buffer);
         if (dimensions.width && dimensions.height) {
+          const availableWidths = [320, 640, 960, 1280, 1920].filter(
+            (w) => (dimensions.width ?? 0) >= w
+          );
+          if (availableWidths.length === 0 && dimensions.width) availableWidths.push(dimensions.width);
+
           photos.push({
             src: `/assets/photos/${slug}/${file}`,
             width: dimensions.width,
             height: dimensions.height,
             caption,
+            widths: availableWidths,
           });
         }
       } catch {}

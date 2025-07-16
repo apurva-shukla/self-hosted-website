@@ -41,4 +41,5 @@ export interface Photo {
   width: number;
   height: number;
   caption: string;
+  widths?: number[]; // available responsive widths (for srcset)
 } 
