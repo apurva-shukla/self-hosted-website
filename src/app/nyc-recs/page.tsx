@@ -1,8 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import markdownToHtml from '@/lib/markdownToHtml';
-import { PostBody } from '@/app/_components/post-body';
 import PostLayout from '../_components/post-layout';
+import MdxLayout from '../_components/mdx-layout';
+import NycRecsContent from '@/_pages/nyc-recs.mdx';
 
 export const metadata = {
   title: 'NYC Recommendations',
@@ -10,13 +8,11 @@ export const metadata = {
 };
 
 export default async function NycRecsPage() {
-  const filePath = path.join(process.cwd(), '_pages', 'nyc-recs.md');
-  const markdownContent = fs.readFileSync(filePath, 'utf-8');
-  const content = await markdownToHtml(markdownContent);
-
   return (
     <PostLayout breadcrumb={{ text: 'nyc-recs', href: '/nyc-recs' }}>
-      <PostBody content={content} />
+      <MdxLayout>
+        <NycRecsContent />
+      </MdxLayout>
     </PostLayout>
   );
 } 

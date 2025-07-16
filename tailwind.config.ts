@@ -5,6 +5,7 @@ const config: Config = {
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/_pages/**/*.{md,mdx}",
     "./_posts/**/*.md",
   ],
   theme: {
@@ -92,6 +93,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;
