@@ -7,7 +7,7 @@ const PHOTOS_DIR = path.join(process.cwd(), 'public', 'assets', 'photos');
 const METADATA_PATH = path.join(process.cwd(), 'public', 'generated', 'metadata.json');
 
 function isImageFile(fileName: string) {
-  return /\.(jpe?g|png|webp|avif)$/i.test(fileName);
+  return /\.(jpe?g|png|webp|avif|heic|heif)$/i.test(fileName);
 }
 
 export function getPhotoEvents(): PhotoEvent[] {
@@ -56,8 +56,15 @@ export function getAllPhotos(): Photo[] {
     try {
       const raw = fs.readFileSync(METADATA_PATH, 'utf-8');
       const photos: Photo[] = JSON.parse(raw);
-      return photos.sort((a, b) => (a.src > b.src ? -1 : 1));
-    } catch {
+      // Validate the data structure
+      if (!Array.isArray(photos)) {
+        console.error('Metadata is not an array, falling back to runtime computation');
+        // fall through to runtime computation
+      } else {
+        return photos.sort((a, b) => (a.src > b.src ? -1 : 1));
+      }
+    } catch (err) {
+      console.error('Error reading metadata:', err);
       // fall through to runtime computation
     }
   }

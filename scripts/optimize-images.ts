@@ -2,6 +2,18 @@ import * as fs from 'fs/promises';
 import path from 'path';
 import sharp from 'sharp';
 
+let heicConvert: any | null = null;
+async function ensureHeicConvert() {
+  if (heicConvert) return heicConvert;
+  try {
+    // dynamic import to avoid extra startup cost when no HEIC present
+    heicConvert = (await import('heic-convert')).default;
+    return heicConvert;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Simple build-time optimiser for public/assets/photos.
  * – Generates responsive WebP sizes (320-1920px widths)
@@ -14,7 +26,7 @@ const OUTPUT_DIR = path.join(process.cwd(), 'public', 'generated', 'images');
 const METADATA_FILE = path.join(process.cwd(), 'public', 'generated', 'metadata.json');
 
 const SIZES = [320, 640, 960, 1280, 1920];
-const EXT_REGEX = /\.(jpe?g|png|webp|avif)$/i;
+const EXT_REGEX = /\.(jpe?g|png|webp|avif|heic|heif)$/i;
 
 type PhotoMeta = {
   src: string;
@@ -32,7 +44,7 @@ function isImageFile(name: string) {
   return EXT_REGEX.test(name);
 }
 
-async function optimiseImage(inputPath: string, outputDir: string, baseName: string, origMeta: sharp.Metadata): Promise<PhotoMeta> {
+async function optimiseImage(inputPath: string, outputDir: string, baseName: string, origMeta: sharp.Metadata, ext: string): Promise<PhotoMeta | null> {
   const caption = path.basename(path.dirname(inputPath)); // default caption = event slug (override later)
 
   // Determine applicable target widths (never upscale)
@@ -50,7 +62,21 @@ async function optimiseImage(inputPath: string, outputDir: string, baseName: str
       } catch {
         // Need to create
       }
-      await sharp(inputPath)
+      let pipeline: sharp.Sharp;
+      if (ext === '.heic' || ext === '.heif') {
+        const convert = await ensureHeicConvert();
+        if (!convert) {
+          console.warn(`Skipping HEIC file (conversion lib missing): ${inputPath}`);
+          return;
+        }
+        const inputBuffer = await fs.readFile(inputPath);
+        const jpgBuffer = await convert({ buffer: inputBuffer, format: 'JPEG', quality: 1 });
+        pipeline = sharp(jpgBuffer);
+      } else {
+        pipeline = sharp(inputPath);
+      }
+
+      await pipeline
         .resize({ width: w })
         .webp({ quality: 75 })
         .toFile(outPath);
@@ -61,6 +87,8 @@ async function optimiseImage(inputPath: string, outputDir: string, baseName: str
   const largestWidth = targetWidths[targetWidths.length - 1];
   const largestHeight = Math.round(((origMeta.height ?? 0) * largestWidth) / (origMeta.width ?? 1));
   const src = `/generated/images/${path.basename(path.dirname(inputPath))}/${baseName}-${largestWidth}.webp`;
+
+  if (!targetWidths.length) return null;
 
   return {
     src,
@@ -90,7 +118,7 @@ async function main() {
   }
 
   const events = await fs.readdir(SOURCE_DIR);
-  const photos: PhotoMeta[] = [];
+  let photos: PhotoMeta[] = [];
 
   for (const slug of events) {
     const eventDir = path.join(SOURCE_DIR, slug);
@@ -106,15 +134,49 @@ async function main() {
     for (const file of files) {
       const inputPath = path.join(eventDir, file);
       const baseName = path.parse(file).name;
-      const meta = await sharp(inputPath).metadata();
-      const photoMeta = await optimiseImage(inputPath, path.join(OUTPUT_DIR, slug), baseName, meta);
-      photoMeta.caption = caption; // attach event caption
-      photos.push(photoMeta);
+      const ext = path.extname(file).toLowerCase();
+      let meta: sharp.Metadata;
+      if (ext === '.heic' || ext === '.heif') {
+        const convert = await ensureHeicConvert();
+        if (!convert) {
+          console.warn(`Skipping HEIC file (conversion lib missing): ${inputPath}`);
+          continue;
+        }
+        const jpgBuffer = await convert({ buffer: await fs.readFile(inputPath), format: 'JPEG', quality: 1 });
+        meta = await sharp(jpgBuffer).metadata();
+      } else {
+        meta = await sharp(inputPath).metadata();
+      }
+
+      const photoMeta = await optimiseImage(inputPath, path.join(OUTPUT_DIR, slug), baseName, meta, ext);
+      if (photoMeta) {
+        photoMeta.caption = caption; // attach event caption
+        photos.push(photoMeta);
+      }
     }
   }
 
   // newest first (by src path which contains slug date)
   photos.sort((a, b) => (a.src > b.src ? -1 : 1));
+
+  // Check for existing metadata.json and preserve any manual edits
+  let existingMetadata: PhotoMeta[] = [];
+  try {
+    const existingData = await fs.readFile(METADATA_FILE, 'utf-8');
+    existingMetadata = JSON.parse(existingData);
+    
+    // Remove any entries that would be overwritten by the new process
+    const newSrcPaths = new Set(photos.map(p => p.src));
+    existingMetadata = existingMetadata.filter(item => !newSrcPaths.has(item.src));
+    
+    // Combine existing (manually preserved) entries with new ones
+    photos = [...existingMetadata, ...photos];
+    
+    // Re-sort the combined list
+    photos.sort((a, b) => (a.src > b.src ? -1 : 1));
+  } catch (error) {
+    // No existing file or invalid JSON, just use the newly generated metadata
+  }
 
   await ensureDir(path.dirname(METADATA_FILE));
   await fs.writeFile(METADATA_FILE, JSON.stringify(photos, null, 2));

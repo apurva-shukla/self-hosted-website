@@ -5,6 +5,9 @@ import { FaXTwitter, FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 export default function PhotosPage() {
   const photos = getAllPhotos();
+  
+  // Ensure photos is always an array even if there's an error
+  const safePhotos = Array.isArray(photos) ? photos : [];
 
   return (
     <main className="flex flex-col items-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
@@ -18,7 +21,7 @@ export default function PhotosPage() {
         </div>
 
         <div className="space-y-16">
-          {photos.map((photo, idx) => (
+          {safePhotos.map((photo, idx) => (
             <PhotoCard key={idx} photo={photo} />
           ))}
         </div>
