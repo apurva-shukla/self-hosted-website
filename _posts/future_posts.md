@@ -19,3 +19,4 @@ Lists I want to cover
 - 30 days of biking
 - 30 days of 5:00am
 - 30 days of <20 mins of screen time
+- top 100 movies from the nytimes list

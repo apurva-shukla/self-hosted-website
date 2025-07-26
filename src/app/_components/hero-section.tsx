@@ -16,7 +16,7 @@ const HeroSection = ({
   title,
   bio,
   links = [
-    { text: 'blog', href: '/posts' },
+    { text: 'writing', href: '/posts' },
     { text: 'bookshelf', href: '/bookshelf' },
     { text: 'nyc recs', href: '/nyc-recommendations' },
     { text: 'about me', href: '/about' },

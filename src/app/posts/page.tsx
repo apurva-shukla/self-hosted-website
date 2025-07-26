@@ -3,11 +3,11 @@ import Link from "next/link";
 import DateFormatter from "../_components/date-formatter";
 
 export const metadata = {
-  title: 'Blog',
+  title: 'Writing',
   description: 'Read my latest articles and thoughts.',
 };
 
-export default function BlogPage() {
+export default function WritingPage() {
   const allPosts = getAllPosts();
   
   return (
@@ -17,7 +17,7 @@ export default function BlogPage() {
           <Link href="/" className="hover:text-primary hover:underline transition-colors">
             Apurva Shukla
           </Link>
-          /blog
+          /writing
         </div>
         
         <div className="flex flex-col gap-8">

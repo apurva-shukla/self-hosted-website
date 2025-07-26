@@ -46,10 +46,10 @@ export default function Index() {
           <div className="flex flex-col items-start gap-6">
             <div className="flex flex-col items-start gap-2">
               <Link
-                href="/blog"
+                href="/writing"
                 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
               >
-                &gt; blog
+                &gt; writing
               </Link>
               {/* <Link href="/bookshelf" className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline">
                   &gt; bookshelf

@@ -15,7 +15,7 @@ export default function sitemap() {
       lastModified: new Date(),
     },
     {
-      url: `${siteUrl}/blog`,
+      url: `${siteUrl}/writing`,
       lastModified: new Date(),
     },
     {

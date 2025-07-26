@@ -9,8 +9,8 @@ type Props = {
 };
 
 export default function PostLayout({ children, breadcrumb }: Props) {
-  const breadcrumbText = breadcrumb?.text ?? 'blog';
-  const breadcrumbHref = breadcrumb?.href ?? '/blog';
+  const breadcrumbText = breadcrumb?.text ?? 'writing';
+  const breadcrumbHref = breadcrumb?.href ?? '/writing';
 
   return (
     <main className="flex flex-col items-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
