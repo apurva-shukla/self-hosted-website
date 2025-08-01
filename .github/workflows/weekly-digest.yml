@@ -12,6 +12,10 @@ jobs:
   build-and-commit:
     runs-on: ubuntu-latest
 
+    # Add this permissions block to grant write access to the job
+    permissions:
+      contents: write
+
     steps:
       # Step 1: Check out the repository's code so the workflow can access it.
       - name: Checkout repository
