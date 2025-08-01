@@ -16,9 +16,9 @@ I use a self-hosted instance of [Karakeep](https://github.com/karakeep/karakeep)
 
 ### The Initial Plan and the Serverless Hurdle
 
-My first thought was to use a simple [Vercel Cron](https://vercel.com/docs/cron-jobs) Job. The idea was to trigger an API route in my Next.js app every Sunday. This route would fetch the data from the Karakeep API and then ... yikes, after around an hour of working, I realized that it was not going to work.
+My first thought was see if Vercel offered something off the shelf. I looked into [Vercel Cron](https://vercel.com/docs/cron-jobs) Jobs. I was hoping that this could trigger an API route in my Next.js app every Sunday, to fetch data from the Karakeep API and create a new markdown file. I didn't have to noodle on this for too long, before I realized it wouldn't work.
 
-I learnt a valuable lesson of a serverless architecture: the filesystem is read-only. A Next.js API route running on Vercel cannot write a new markdown file to the `/_posts` directory of the project's Git repository. This approach was a dead end. The content for this blog is generated from static markdown files at build time, so I needed a process that could add a new file to the source code itself.
+The Vercel Cron jobs filesystem is read-only. A Next.js API route running on Vercel cannot write a new markdown file to the `/_posts` directory of my website's Git repo. So I needed a process that could add a new file to the source code itself.
 
 ### The Solution: Git as a Database, Driven by GitHub Actions
 
@@ -77,12 +77,12 @@ const markdownList = bookmarks
 
 With the script ready, the next step was to automate it. I created a GitHub Actions workflow file at `.github/workflows/weekly-digest.yml`.
 
-The workflow is configured to run every Sunday at midnight UTC, with `workflow_dispatch` added to allow for manual runs from the GitHub UI.
+The workflow is configured to run every Sunday at 10 PM EST, with `workflow_dispatch` added to allow for manual runs from the GitHub UI.
 
 ```yaml
 on:
   schedule:
-    - cron: '0 0 * * 0' # Every Sunday at midnight UTC
+    - cron: '0 22 * * 0' # Every Sunday at 10 PM EST
   workflow_dispatch: {}
 ```
 
@@ -122,10 +122,9 @@ jobs:
           commit_options: '--no-verify --signoff'
           file_pattern: '_posts/*.md'
 ```
-*(Note: I haven't implemented the GitHub action part yet, but this is what it will look like)*
 
 ### A Note on `ts-node` and Next.js
-A final hurdle was getting `ts-node` to work correctly with the Next.js project's TypeScript configuration. The `"moduleResolution": "bundler"` setting in `tsconfig.json` is great for Next.js builds but can cause issues for standalone scripts. The fix was to provide a `ts-node`-specific override in `tsconfig.json` to use the `CommonJS` module system for script execution.
+A final hurdle was getting `ts-node` to work correctly with the Next.js project's TypeScript configuration. The `"moduleResolution": "bundler"` setting in `tsconfig.json` is great for Next.js builds but can cause issues for standalone scripts. The fix was to provide a `ts-node`-specific override in `tsconfig.json` to use the `CommonJS` module system for script execution. I'm not sure if this is the best way to do this, but it works.
 
 ```json
 {
@@ -141,4 +140,4 @@ A final hurdle was getting `ts-node` to work correctly with the Next.js project'
 
 ### Final Result
 
-Now, every Sunday, this workflow runs automatically. It fetches my bookmarks, creates a new digest post, and commits it. Vercel sees the new commit and triggers a deployment. By the time I wake up, a new "Internet Goodies" post is live on my blog, all without any manual intervention. It's a clean, robust, and entirely self-contained system that embraces the Git-as-a-CMS philosophy. 
+Now, every Sunday, I get a new post on my blog with a list of articles I read during the week. This workflow fetches my bookmarks from Karakeep, creates a new digest post, and commits it. Vercel sees the new commit and triggers a deployment. By the time I wake up, a new "Internet Goodies" post is live on my blog.

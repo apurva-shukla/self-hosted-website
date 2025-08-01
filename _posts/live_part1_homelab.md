@@ -12,9 +12,15 @@ ogImage:
 ---
 *This is part 1 of a series of posts about my homelab that explains the process of setting it up. [Part 2](/posts/live_part2_homelab) does into my motiviations, and [Part 3](/posts/live_part3_homelab) explains how I setup a two-door policy to secure it.*
 
-For a long time, my digital life felt like I was just renting space. Two years ago, I realized I was paying for Netflix and Hulu, yet rarely watching anything that truly inspired me. I felt trapped by recommendation algorithms, so I switched to Stremio with RealDebrid. Cutting out streaming subscriptions was liberating—and nudged me closer to the world of self-hosting.
+## The Beginning
 
-Lately, the fragmentation became impossible to ignore: bookmarks in one cloud, smart home routines in Philips Hue, reading lists in Obsidian, and more. My data was scattered across a dozen platforms, and any sense of control was just an illusion. That’s when I decided to buy a modest Cilate Mini PC (16GB RAM, 500GB SSD). I wasn’t aiming to build a data center—just to carve out a small, personal plot of digital land. This is the story of that homestead.
+I learnt about Pi-hole a decade ago on a random reddit post. The thought that I could block ads at my network level was sufficiently intriguing to my non-technical brain that I bookmarked it, and knew I would implement it someday. Moreover, I had bought a Philips Hue system after graduation and issues with it led me to discover the wonderful world of Home-Assistant that I was mising out on.
+
+So after I settled into my new place in Brooklyn, I finally had the stability and sufficient technical chops to go down the rabbit-hole of making these services real. This blog post details the journey I went through, my process to setup a homelab as a self-taught developer, and all the unexpected learnings along the way.
+
+## The Hardware
+
+ The first step was to buy a small computer that could run these services. I was almost about to buy a Raspberry PI for this, but thankfully I searched Reddit r/homeassistant and saw everyone recommending buying an Intel N100 Mini-PC. It was 3x the price of a Raspberry Pi ($100 versus $40), but everyone unanimously recommended going with the Mini-PC. I didn't take me long to find an unboxed one on eBay for $100.
 
 <img src="/assets/blog/homelab/ebay.png" alt="Ebay purchase screenshot" class="blog-image">
 <small class="image-caption">$100 I'd spent again in a heartbeat</small>
@@ -22,7 +28,9 @@ Lately, the fragmentation became impossible to ignore: bookmarks in one cloud, s
 <img src="/assets/blog/homelab/minipc.jpg" alt="Tiny little guy" class="blog-image">
 <small class="image-caption">The tiny little guy.</small>
 
-At the core of this mini PC is **Proxmox VE**. On it, a run a bunch of isolated services inside lightweight LXC containers. Each container has a clear purpose—a quiet stand against digital dependence:
+## The Software
+
+I also learnt that folks were running something called **Proxmox** on this machine. On it, a run a bunch of isolated services inside lightweight LXC containers. Each container has a clear purpose—a quiet stand against digital dependence:
 
 <img src="/assets/blog/homelab/proxmox.png" alt="Proxmox virtual containers" class="blog-image">
 <small class="image-caption">A mini-army of personal servers</small>
