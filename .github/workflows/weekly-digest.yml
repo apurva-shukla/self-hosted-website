@@ -1,0 +1,50 @@
+name: Create Weekly Digest Post
+
+on:
+  # Runs every Sunday at 2 AM UTC. You can adjust this time.
+  schedule:
+    - cron: '0 2 * * 0'
+  
+  # Allows you to run this workflow manually from the Actions tab in GitHub.
+  workflow_dispatch:
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository's code so the workflow can access it.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the Node.js environment. Version 20 is a good modern choice.
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # Cache npm dependencies for faster runs
+
+      # Step 3: Install the project's dependencies.
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run the TypeScript script to fetch bookmarks and create the post.
+      - name: Run sync script
+        env:
+          # These secrets are securely provided by GitHub.
+          KARAKEEP_API_URL: ${{ secrets.KARAKEEP_API_URL }}
+          KARAKEEP_API_KEY: ${{ secrets.KARAKEEP_API_KEY }}
+          KARAKEEP_LIST_ID: ${{ secrets.KARAKEEP_LIST_ID }}
+        run: npx ts-node scripts/sync-bookmarks.ts
+
+      # Step 5: If the script created a new file, commit it to the repository.
+      - name: Commit and push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          # The commit message for the new post.
+          commit_message: "chore: add weekly digest post for this week"
+          # The user to associate with the commit.
+          commit_user_name: GitHub Actions Bot
+          commit_user_email: actions@github.com
+          # Tell the action to only look for changes in the _posts directory.
+          file_pattern: '_posts/*.md' 
