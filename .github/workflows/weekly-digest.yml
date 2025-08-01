@@ -35,6 +35,8 @@ jobs:
       # Step 4: Run the TypeScript script to fetch bookmarks and create the post.
       - name: Run sync script
         env:
+          # Set the timezone for this step to New York City time.
+          TZ: 'America/New_York'
           # These secrets are securely provided by GitHub.
           KARAKEEP_API_URL: ${{ secrets.KARAKEEP_API_URL }}
           KARAKEEP_API_KEY: ${{ secrets.KARAKEEP_API_KEY }}

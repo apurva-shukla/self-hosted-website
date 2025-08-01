@@ -1,7 +1,7 @@
 ---
 title: "Automating My Blog's Weekly Digest with a Self-Hosted API and GitHub Actions"
 excerpt: "A technical walkthrough of how I built a completely automated pipeline to fetch bookmarks from my personal Karakeep instance and publish them as a weekly digest post on my Next.js blog, using a TypeScript script and a GitHub Action."
-date: '2024-10-27'
+date: '2025-07-31'
 author:
   name: 'Apurva Shukla'
   picture: '/assets/profile/profile.jpg'
@@ -10,31 +10,30 @@ ogImage:
 coverImage: ''
 ---
 
-I'm a big believer in automating repetitive tasks. One of my weekly routines was to collate a list of interesting articles I'd bookmarked and share them on my blog. This manual process of copy-pasting links was tedious and error-prone. I knew there had to be a better way.
+I'm a big believer in automating repetitive tasks. One of my weekly routines was to collate a list of interesting articles I'd bookmarked and share them on my blog. This manual process of copy-pasting links was tedious and error-prone. I knew there had to be a better way. Almost all of code you will see below was vibe-coded in Cursor in around an hour. I had to feed it the API docs, validate the API responses, and de-bug here and there. Overall, I would say that it did 95% of the work for me. It also guided me in creating my first ever GitHub Action.
 
 I use a self-hosted instance of [Karakeep](https://github.com/karakeep/karakeep) running on my home server to save and tag articles. The goal was to build a system that could automatically fetch these bookmarks every week and create a new digest post on this Next.js blog.
 
 ### The Initial Plan and the Serverless Hurdle
 
-My first thought was to use a simple Vercel Cron Job. The idea was to trigger an API route in my Next.js app every Sunday. This route would fetch the data from the Karakeep API and then... what?
+My first thought was to use a simple [Vercel Cron](https://vercel.com/docs/cron-jobs) Job. The idea was to trigger an API route in my Next.js app every Sunday. This route would fetch the data from the Karakeep API and then ... yikes, after around an hour of working, I realized that it was not going to work.
 
-Herein lies the fundamental challenge of a serverless architecture: the filesystem is read-only. A Next.js API route running on Vercel cannot write a new markdown file to the `/_posts` directory of the project's Git repository. This approach was a dead end. The content for this blog is generated from static markdown files at build time, so I needed a process that could add a new file to the source code itself.
+I learnt a valuable lesson of a serverless architecture: the filesystem is read-only. A Next.js API route running on Vercel cannot write a new markdown file to the `/_posts` directory of the project's Git repository. This approach was a dead end. The content for this blog is generated from static markdown files at build time, so I needed a process that could add a new file to the source code itself.
 
 ### The Solution: Git as a Database, Driven by GitHub Actions
 
 The most robust solution was to treat my Git repository as the database. The workflow would be:
 1.  Run a script on a schedule.
-2.  The script fetches data and generates a new markdown file.
-3.  The script commits this new file back to the repository.
-4.  This new commit triggers a fresh deployment on Vercel.
-
-This is a classic "GitOps" pattern and is perfectly suited for a tool like GitHub Actions.
+2.  The script fetches data using the Karakeep API 
+3.  A node script generates a new markdown file.
+4.  The script commits this new file back to the repository.
+5.  This new commit triggers a fresh deployment on Vercel (this happens automatically with Vercel's Git-based deployments)
 
 ### Step 1: The Data-Fetching Script
 
 I created a TypeScript script, `scripts/sync-bookmarks.ts`, to handle the core logic.
 
-First, it fetches bookmarks from my specific Karakeep list. The script uses `dotenv` to load credentials from a `.env.local` file during local development. This file is in `.gitignore`, so my API keys never leave my machine.
+First, it fetches bookmarks from my specific Karakeep list. The script uses `dotenv` to load credentials from a `.env.local` file during local development.
 
 ```typescript
 const fetchBookmarks = async (): Promise<KarakeepBookmark[]> => {
@@ -51,9 +50,7 @@ const fetchBookmarks = async (): Promise<KarakeepBookmark[]> => {
   return data.bookmarks;
 };
 ```
-One interesting snag I hit here was that the API response didn't match what I expected. The bookmarks were in a `bookmarks` array, not an `items` array as I had initially coded for. This was a quick fix, but a good reminder to always log and validate the shape of external API responses.
-
-The script then filters these bookmarks, only keeping ones that I've explicitly tagged with `website`.
+I don't want to upload all the random stuff I read, so this scipt filters these bookmarks for ones that I explicitly tagged with `website`.
 
 ```typescript
 const filteredBookmarks = allBookmarks.filter((bookmark) =>
