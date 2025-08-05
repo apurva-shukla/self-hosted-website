@@ -65,7 +65,11 @@ export default function CardStack({
       const index = newCards.findIndex((card) => card.id === id);
       const [card] = newCards.splice(index, 1);
       newCards.unshift(card);
-      return newCards;
+      // Re-randomize rotation for all cards to create a new random stack
+      return newCards.map((c) => ({
+        ...c,
+        rotation: Math.random() * 10 - 5,
+      }));
     });
   };
 
@@ -89,8 +93,8 @@ export default function CardStack({
               className="card"
               onClick={() => sendToBackOnClick && sendToBack(card.id)}
               animate={{
-                rotateZ: (cards.length - index - 1) * 2 + card.rotation,
-                scale: 1 + index * 0.06 - cards.length * 0.06,
+                rotateZ: card.rotation,
+                scale: 1 + index * 0.06 - cards.length * 0.03,
                 transformOrigin: "90% 90%",
               }}
               initial={false}

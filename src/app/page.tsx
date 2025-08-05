@@ -4,16 +4,17 @@ import CardStack from "./_components/card-stack";
 import Image from "next/image";
 
 export default function Index() {
-  const showCardStack = false; // Toggle this to show/hide the card stack vs. static image
+  const showCardStack = true; // Toggle this to show/hide the card stack vs. static image
 
   const images = [
-    { id: 1, img: "/assets/homepage/homepage1.png" },
-    { id: 2, img: "/assets/homepage/homepage2.png" },
-    { id: 3, img: "/assets/profile/profile.jpg" },
+    { id: 1, img: "/assets/homepage/frame1.png" },
+    { id: 2, img: "/assets/homepage/frame2.png" },
+    { id: 3, img: "/assets/homepage/frame3.png" },
+    { id: 4, img: "/assets/homepage/frame4.png" },
   ];
 
   return (
-    <main className="flex items-center justify-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
+    <main className="flex flex-col items-center justify-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
       {/* Hero Section */}
       <section className="flex flex-col lg:flex-row gap-12 lg:gap-24 w-full max-w-6xl">
         {/* Left Content */}
@@ -42,9 +43,9 @@ export default function Index() {
                 <Link href="/uses-this" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
                   &gt; uses this
                 </Link>
-                <Link href="/nyc-recs" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
+                {/* <Link href="/nyc-recs" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
                   &gt; nyc recs
-                </Link>
+                </Link> */}
                 <Link href="/about" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
                   &gt; about me
                 </Link>
@@ -53,7 +54,7 @@ export default function Index() {
               <a href="https://x.com/shukla_apurva" target="_blank" rel="noopener noreferrer" aria-label="Link to X profile">
                 <FaXTwitter className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
               </a>
-              <a href="https://github.com/apurvarshukla" target="_blank" rel="noopener noreferrer" aria-label="Link to GitHub profile">
+              <a href="https://github.com/apurva-shukla" target="_blank" rel="noopener noreferrer" aria-label="Link to GitHub profile">
                 <FaGithub className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
               </a>
               <a href="https://www.linkedin.com/in/apurvarshukla/" target="_blank" rel="noopener noreferrer" aria-label="Link to LinkedIn profile">
@@ -64,21 +65,29 @@ export default function Index() {
         </div>
         
         {/* Right image - hidden on mobile */}
-        <div className="hidden lg:flex w-full lg:w-2/5 items-start justify-center pt-12">
+        <div className="rounded-lg hidden lg:flex w-full lg:w-2/5 items-start justify-center">
           {showCardStack ? (
-            <CardStack cardsData={images} cardDimensions={{ width: 350, height: 450 }} />
+            <CardStack cardsData={images} cardDimensions={{ width: 450, height: 550 }} />
           ) : (
             <Image
               src="/assets/profile/profile.jpg"
               alt="Apurva Shukla profile picture"
-              width={350}
-              height={450}
-              className="rounded-lg object-cover"
+              width={450}
+              height={550}
+              className="object-cover shadow-high-quality"
               priority
             />
           )}
         </div>
       </section>
+
+      <div className="mt-60 text-center font-normal text-[14px] text-primary-light opacity-60">
+        <p>
+          Custom built Next.js theme in Brooklyn, NYC ❤️
+          <br />
+          Deployed on Vercel
+        </p>
+      </div>
     </main>
   );
 }

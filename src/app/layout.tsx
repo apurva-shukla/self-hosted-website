@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ashukla.co"),
   title: "Apurva Shukla's Lil Website",
   description: "My internet corner 🪴",
   openGraph: {

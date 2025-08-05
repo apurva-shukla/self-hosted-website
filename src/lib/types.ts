@@ -19,6 +19,7 @@ export type AppRouterPageProps<T extends Record<string, string> = {}> = {
 
 // Fallback Metadata type for Next.js App Router
 export interface Metadata {
+  metadataBase?: URL | null;
   title?: string | null;
   description?: string | null;
   openGraph?: {
