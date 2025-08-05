@@ -62,7 +62,12 @@ body {
 
 /* Override dark mode styles with light mode equivalents */
 :root {
+  --color-primary: #800505; /* Your light mode primary color */
   color-scheme: light;
+}
+
+.dark {
+  --color-primary: #764444; /* Your dark mode primary color */
 }
 
 /* Force light mode for all elements */

@@ -26,6 +26,7 @@
   margin-bottom: 1.5rem;
   font-family: "JJannon", serif;
   letter-spacing: 0.15px;
+  color: var(--color-primary);
 }
 
 @media (min-width: 768px) {
@@ -41,22 +42,24 @@
 }
 
 .markdown h2 {
-  font-size: 1.875rem;
+  font-size: 2.5rem;
   line-height: 1.375;
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-family: "JJannon", serif;
   letter-spacing: 0.2px;
+  color: var(--color-primary);
 }
 
 .markdown h3 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.375;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-family: "JJannon", serif;
   letter-spacing: 0.25px;
+  color: var(--color-primary);
 }
 
 .markdown a {
