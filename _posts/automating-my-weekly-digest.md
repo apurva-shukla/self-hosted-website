@@ -12,6 +12,9 @@ coverImage: ''
 
 I'm a big believer in automating repetitive tasks. One of my weekly routines was to collate a list of interesting articles I'd bookmarked and share them on my blog. This manual process of copy-pasting links was tedious and error-prone. I knew there had to be a better way. Almost all of code you will see below was vibe-coded in Cursor in around an hour. I had to feed it the API docs, validate the API responses, and de-bug here and there. Overall, I would say that it did 95% of the work for me. It also guided me in creating my first ever GitHub Action.
 
+<img src="/assets/blog/homelab/karakeep.png" alt="Karakeep screenshot" class="blog-image">
+<small class="image-caption">Karakeep UI</small>
+
 I use a self-hosted instance of [Karakeep](https://github.com/karakeep/karakeep) running on my home server to save and tag articles. The goal was to build a system that could automatically fetch these bookmarks every week and create a new digest post on this Next.js blog.
 
 ### The Initial Plan and the Serverless Hurdle

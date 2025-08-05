@@ -60,18 +60,18 @@ export default function Index() {
               >
                 &gt; uses this
               </Link>
-              <Link
+              {/* <Link
                 href="/nyc-recs"
                 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
               >
                 &gt; nyc recs
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 href="/photos"
                 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
               >
                 &gt; photos
-              </Link>
+              </Link> */}
               <Link
                 href="/about"
                 className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
