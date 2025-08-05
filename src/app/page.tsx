@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { FaXTwitter, FaGithub, FaLinkedin } from "react-icons/fa6";
 import Image from "next/image";
-import sizeOf from "image-size";
-import path from "path";
-import fs from "fs";
+import CardStack from "./_components/card-stack";
 
 export default function Index() {
-  const imagePath = path.join(
-    process.cwd(),
-    "public/assets/profile/profile.jpg",
-  );
-  const buffer = fs.readFileSync(imagePath);
-  const dimensions = sizeOf(buffer);
+  const showCardStack = true; // Toggle this to show/hide the card stack vs. static image
+
+  const images = [
+    { id: 1, img: "/assets/homepage/Frame1.png" },
+    { id: 2, img: "/assets/homepage/Frame2.png" },
+    { id: 3, img: "/assets/homepage/Frame3.png" },
+    { id: 4, img: "/assets/homepage/Frame4.png" },
+  ];
 
   return (
-    <main className="flex items-center justify-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
+    <main className="flex flex-col items-center justify-center min-h-screen w-full bg-hero-bg p-6 sm:p-12 lg:p-24">
       {/* Hero Section */}
       <section className="flex flex-col lg:flex-row gap-12 lg:gap-24 w-full max-w-6xl">
         {/* Left Content */}
@@ -56,25 +56,16 @@ export default function Index() {
                 </Link> */}
               <Link
                 href="/uses-this"
-                className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
+                className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline"
               >
                 &gt; uses this
               </Link>
-              {/* <Link
-                href="/nyc-recs"
-                className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
-              >
-                &gt; nyc recs
-              </Link> */}
-              {/* <Link
-                href="/photos"
-                className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
-              >
-                &gt; photos
-              </Link> */}
+              {/* <Link href="/nyc-recs" className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline">
+                  &gt; nyc recs
+                </Link> */}
               <Link
                 href="/about"
-                className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
+                className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline"
               >
                 &gt; about me
               </Link>
@@ -89,7 +80,7 @@ export default function Index() {
                 <FaXTwitter className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
               </a>
               <a
-                href="https://github.com/apurvarshukla"
+                href="https://github.com/apurva-shukla"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Link to GitHub profile"
@@ -109,17 +100,32 @@ export default function Index() {
         </div>
 
         {/* Right image - hidden on mobile */}
-        <div className="hidden lg:flex w-full lg:w-2/5 items-center justify-center">
-          <Image
-            src="/assets/profile/profile.jpg"
-            alt="Profile of Apurva Shukla"
-            width={dimensions.width}
-            height={dimensions.height}
-            className="object-cover w-full h-full rounded-2xl shadow-lg"
-            priority={true}
-          />
+        <div className="rounded-lg hidden lg:flex w-full lg:w-2/5 items-start justify-center">
+          {showCardStack ? (
+            <CardStack
+              cardsData={images}
+              cardDimensions={{ width: 450, height: 550 }}
+            />
+          ) : (
+            <Image
+              src="/assets/profile/profile.jpg"
+              alt="Apurva Shukla profile picture"
+              width={450}
+              height={550}
+              className="object-cover shadow-high-quality"
+              priority
+            />
+          )}
         </div>
       </section>
+
+      <div className="mt-60 text-center font-normal text-[14px] text-primary-light opacity-60">
+        <p>
+          Custom built Next.js theme in Brooklyn, NYC ❤️
+          <br />
+          Deployed on Vercel
+        </p>
+      </div>
     </main>
   );
 }
