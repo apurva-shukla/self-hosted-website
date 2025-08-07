@@ -23,35 +23,19 @@ const config: Config = {
         xl: '1280px',
       },
     },
-    gridColumn: {
-      'span-1': 'span 1 / span 1',
-      'span-2': 'span 2 / span 2',
-      'span-3': 'span 3 / span 3',
-      'span-4': 'span 4 / span 4',
-      'span-5': 'span 5 / span 5',
-      'span-6': 'span 6 / span 6',
-      'span-7': 'span 7 / span 7',
-      'span-8': 'span 8 / span 8',
-      'span-9': 'span 9 / span 9',
-      'span-10': 'span 10 / span 10',
-      'span-11': 'span 11 / span 11',
-      'span-12': 'span 12 / span 12',
-      'span-full': 'span 1 / -1',
-    },
     gridTemplateColumns: {
       '12': 'repeat(12, minmax(0, 1fr))',
     },
     gridTemplateRows: {
       '12': 'repeat(12, minmax(0, 1fr))',
     },
-    gridGap: {
-      '20': '20px',
-    },
     extend: {
       fontFamily: {
-        sans: ['JJannon', 'serif'],
-        jjannon: ['JJannon', 'serif'],
+        // Use Inter for a clean developer-friendly look; keep existing aliases working
+        sans: ['Inter', 'system-ui', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
+        jjannon: ['Inter', 'system-ui', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
         instrument: ['"Instrument Serif"', 'serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -59,17 +43,23 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "accent-1": "#FAFAFA",
-        "accent-2": "#EAEAEA",
-        "accent-7": "#333",
-        success: "#0070a4",
-        cyan: "#79FFE1",
-        "hero-bg": "#F2F2E1",
-        "primary": "#800505",
-        "primary-light": "#764444",
+        // Token-based palette powered by CSS variables
+        background: "var(--bg)",
+        foreground: "var(--fg)",
+        accent: "var(--accent)",
+        "accent-foreground": "var(--accent-foreground)",
+        card: "var(--card)",
+        "card-foreground": "var(--card-foreground)",
+        border: "var(--border)",
+
+        // Keep existing names mapped to the new system for compatibility
+        "hero-bg": "var(--bg)",
+        primary: "#111827", // slate-900 for headings and key text
+        "primary-light": "#475569", // slate-600 for secondary text
+
         // Category colors
         category: {
-          all: "#3b82f6",         // blue-500
+          all: "#3b82f6", // blue-500
           programming: "#8b5cf6", // purple-500
           "personal-development": "#22c55e", // green-500
           productivity: "#f59e0b", // amber-500
@@ -91,6 +81,25 @@ const config: Config = {
         sm: "0 5px 10px rgba(0, 0, 0, 0.12)",
         md: "0 8px 30px rgba(0, 0, 0, 0.12)",
         "high-quality": "0 16px 24px -1px rgba(0, 0, 0, 0.08), 0 4px 8px -1px rgba(0, 0, 0, 0.03)",
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: 'var(--fg)',
+            a: {
+              color: 'var(--accent)',
+              textDecoration: 'none',
+              fontWeight: '500',
+            },
+            'a:hover': {
+              textDecoration: 'underline',
+            },
+            h1: { color: '#111827' },
+            h2: { color: '#111827' },
+            h3: { color: '#111827' },
+            code: { backgroundColor: 'transparent' },
+          },
+        },
       },
     },
   },

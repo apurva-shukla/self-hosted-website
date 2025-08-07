@@ -1,9 +1,12 @@
 import { HOME_OG_IMAGE_URL } from "@/lib/constants";
-import { Metadata } from "@/lib/types";
+import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ashukla.co"),
@@ -28,6 +31,22 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://ashukla.co",
   },
+  manifest: "/favicon/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon/favicon.ico" },
+    ],
+    apple: [{ url: "/favicon/apple-touch-icon.png" }],
+    other: [
+      { rel: "mask-icon", url: "/favicon/safari-pinned-tab.svg" },
+    ],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -38,49 +57,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          rel="icon"
-          href="/favicon/Copy of Baingan face.png"
-          type="image/png"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="/favicon/Copy of Baingan face.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/Copy of Baingan face.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon/Copy of Baingan face.png"
-        />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
-        <link
-          rel="mask-icon"
-          href="/favicon/Copy of Baingan face.png"
-          color="#000000"
-        />
-        <link rel="shortcut icon" href="/favicon/Copy of Baingan face.png" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta
-          name="msapplication-config"
-          content="/favicon/browserconfig.xml"
-        />
-        <meta name="theme-color" content="#000" />
+        <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-        <link href="https://db.onlinewebfonts.com/c/2b2a0e640a6c016b18b8ff6574a4c75b?family=JJannon" rel="stylesheet" />
-        
-        {/* Google Fonts optimization */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-hero-bg">
+      <body className={`${inter.className} bg-hero-bg`}>
         <div className="min-h-screen">{children}</div>
         <SpeedInsights />
         <Analytics />

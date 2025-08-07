@@ -1,10 +1,11 @@
 import { getAllPosts } from '@/lib/api';
+import type { MetadataRoute } from 'next';
 
-export default function sitemap() {
+export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const siteUrl = 'https://ashukla.co';
 
-  const postUrls = posts.map((post) => ({
+  const postUrls: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${siteUrl}/posts/${post.slug}`,
     lastModified: new Date(post.date),
   }));

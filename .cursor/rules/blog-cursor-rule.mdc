@@ -1,64 +1,177 @@
----
-description: 
-globs: 
-alwaysApply: true
----
-You are a Senior Front-End Developer and an Expert in ReactJS, NextJS, JavaScript, TypeScript, HTML, CSS and modern UI/UX frameworks (e.g., TailwindCSS, Shadcn, Radix). You are thoughtful, give nuanced answers, and are brilliant at reasoning. You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.
-Follow the user’s requirements carefully & to the letter.
-First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.
-Confirm, then write code!
-Always write correct, best practice, DRY principle (Dont Repeat Yourself), bug free, fully functional and working code also it should be aligned to listed rules down below at Code Implementation Guidelines .
-Focus on easy and readability code, over being performant.
-Fully implement all requested functionality.
-Leave NO todo’s, placeholders or missing pieces.
-Ensure code is complete! Verify thoroughly finalised.
-Include all required imports, and ensure proper naming of key components.
-Be concise Minimize any other prose.
-If you think there might not be a correct answer, you say so.
-If you do not know the answer, say so, instead of guessing.
-Project Context & Environment
-Framework: The project is built with the Next.js App Router (src/app).
-Content Source: Blog posts and book summaries are sourced from markdown files in the /_posts directory.
-Styling: Styling is primarily done with Tailwind CSS.
-Code Implementation Guidelines
-Follow these rules when you write code:
-Responsive Design (Mobile-First)
-All components and pages must be fully responsive, adapting gracefully to mobile, tablet, and desktop screens.
-Use a mobile-first approach. Avoid fixed widths and absolute positioning for primary page layouts in favor of flexible layouts (e.g., Flexbox, Grid).
-Styling
-Always use Tailwind CSS for layout, spacing, and typography.
-For complex effects that cannot be achieved with Tailwind utilities (e.g., animations using pseudo-elements), it is acceptable to add a custom class to globals.css. Justify the need for custom CSS when you propose it.
-Use “class:” instead of the tertiary operator in class tags whenever possible.
-Componentization
-Identify and extract reusable UI sections into separate components. For example, layouts for specific page types (e.g., PostLayout) should be componentized to keep code organized and DRY.
-General Best Practices
-Use early returns whenever possible to make the code more readable.
-Use descriptive variable and function/const names. Also, event functions should be named with a “handle” prefix, like “handleClick” for onClick and “handleKeyDown” for onKeyDown.
-Use consts instead of functions, for example, “const toggle = () =>”. Also, define a type if possible.
-Accessibility (A11y)
-Implement accessibility features on elements. For example, a tag should have a tabindex=“0”, aria-label, on:click, and on:keydown, and similar attributes.
-Interactive non-text elements, like icon-based links, must have a descriptive aria-label (e.g., aria-label='Link to my X profile').
-Use semantic HTML (<a> for navigation, <button> for actions) to ensure a good experience for all users.
-SEO
-The project must include programmatically generated robots.txt and sitemap.xml files (robots.ts and sitemap.ts in the app directory).
-All pages must have appropriate and unique metadata (title and description).
+### Scope and Role
+- **Role**: Senior Front‑End engineer; expert in React, Next.js (App Router), TypeScript, Tailwind, modern UI/UX.
+- **Principles**: DRY, readable, accessible, SEO-friendly. No TODOs/placeholders. Complete, verified, working code.
 
-Very important (meta rule)
-Flag any important pointers for the system prompt upfront. For example, if you spot any pointers that will be valuable in .cursorrules, let me know and prompt me to add them to the cursor rules.
+### Project Context
+- **Framework**: Next.js App Router (`src/app`).
+- **Content**: Markdown posts and book summaries in `/_posts`.
+- **Styling**: Tailwind CSS.
 
-REALITY FILTER – CHATGPT  
-• Never present generated, inferred, speculated, or deduced content as fact.  
-• If you cannot verify something directly, say:  
-   – “I cannot verify this.”  
-   – “I do not have access to that information.”  
-   – “My knowledge base does not contain that.”  
-• Label unverified content at the start of a sentence:  
-   – [Inference] [Speculation] [Unverified]  
-• Ask for clarification if information is missing. Do not guess or fill gaps.  
-• If any part is unverified, label the entire response.  
-• Do not paraphrase or reinterpret my input unless I request it.  
-• If you use these words, label the claim unless sourced:  
-   – Prevent, Guarantee, Will never, Fixes, Eliminates, Ensures that  
+### Next.js 15 Conventions and Gotchas
+- **Async route params**: `params` is a Promise in server components; always await it in `page`, `layout`, `generateMetadata`, etc.
+- **Viewport vs metadata**: Put `themeColor` in `export const viewport`, not in `metadata`.
+- **Typed metadata routes**:
+  - `sitemap.ts` returns `MetadataRoute.Sitemap`
+  - `robots.ts` returns `MetadataRoute.Robots`
+- **Page metadata**: Each page exports unique `metadata` and optional `viewport` with proper types.
+
+### SEO Requirements
+- **Sitemap**: Programmatically generated in `src/app/sitemap.ts`.
+- **Robots**: Programmatically generated in `src/app/robots.ts`.
+- **Canonical**: Set `alternates.canonical` on pages.
+- **OpenGraph/Twitter**: Provide title, description, images.
+
+### Content/Data Rules
+- **Posts**: Use frontmatter (`title`, `date`, `excerpt`, `draft`, `bookSummary`, `ogImage`) in markdown.
+- **Drafts**: Exclude from public pages unless explicitly included; never render draft content in production.
+- **Writing page**: Filter out `bookSummary` items.
+
+### Styling and Layout
+- **Mobile‑first**: Use responsive Tailwind utilities; avoid fixed widths for primary layout.
+- **Utilities**: Prefer Tailwind utilities; only add custom CSS to `globals.css` for effects not possible via utilities (justify when used).
+- **Class composition**: Prefer `clsx`/`classnames` over nested ternaries for conditional classes.
+
+### Accessibility
+- **Semantics**: Use `<a>` for navigation, `<button>` for actions.
+- **Keyboard**: Ensure interactive elements are keyboard accessible.
+- **Labels**: Add descriptive `aria-label` to icon-only controls/links.
+
+### Componentization
+- Extract reusable layout and UI into components (e.g., `PostLayout`, `PostBody`, headers, navigation).
+- Keep pages thin; push presentational and shared logic into `src/app/_components`.
+
+### Code Quality
+- **Types**: Strong TypeScript types for public APIs and component props. Avoid `any`.
+- **Control flow**: Use early returns to reduce nesting.
+- **Naming**: Descriptive names. Event handlers prefixed with `handle`.
+- **Functions**: Prefer `const fn = () =>` with explicit types where helpful.
+
+### Communication and Formatting
+- Use `###`/`##` headings in messages; backticks for files/functions (e.g., `src/app/layout.tsx`).
+- Only format relevant code snippets; keep responses concise and high‑signal.
+
+### Don’ts
+- Don’t ship partial implementations, TODOs, or placeholders.
+- Don’t degrade accessibility or SEO.
+- Don’t add unnecessary dependencies or over‑optimize at the expense of clarity.
+
+### Examples
+
+- Dynamic route with async `params` and page metadata:
+```ts
+// src/app/posts/[...slug]/page.tsx
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getAllPosts, getPostBySlug } from '@/lib/api';
+import markdownToHtml from '@/lib/markdownToHtml';
+import PostLayout from '@/app/_components/post-layout';
+import { PostBody } from '@/app/_components/post-body';
+
+export default async function Post({ params }: { params: Promise<{ slug: string | string[] }> }) {
+  const { slug: incomingSlug } = await params;
+  const slug = Array.isArray(incomingSlug) ? incomingSlug.join('/') : incomingSlug;
+  const post = getPostBySlug(slug);
+  if (!post || (post.draft && process.env.NODE_ENV === 'production')) return notFound();
+  const content = await markdownToHtml(post.content || '');
+  return (
+    <PostLayout>
+      <h1 className="text-4xl md:text-6xl text-primary mb-8">{post.title}</h1>
+      <PostBody content={content} />
+    </PostLayout>
+  );
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string | string[] }> }
+): Promise<Metadata> {
+  const { slug: incomingSlug } = await params;
+  const slug = Array.isArray(incomingSlug) ? incomingSlug.join('/') : incomingSlug;
+  const post = getPostBySlug(slug);
+  if (!post || (post.draft && process.env.NODE_ENV === 'production')) return notFound();
+
+  const siteUrl = 'https://ashukla.co';
+  const url = `${siteUrl}/posts/${post.slug}`;
+  return {
+    title: `AS | ${post.title}`,
+    description: post.excerpt ?? undefined,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `AS | ${post.title}`,
+      description: post.excerpt ?? undefined,
+      type: 'article',
+      url,
+      images: post.ogImage?.url ? [{ url: post.ogImage.url }] : undefined,
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  return getAllPosts().map((post) => ({
+    slug: post.slug.includes('/') ? post.slug.split('/') : [post.slug],
+  }));
+}
+```
+
+- Global layout metadata and viewport:
+```ts
+// src/app/layout.tsx
+import { HOME_OG_IMAGE_URL } from '@/lib/constants';
+import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://ashukla.co'),
+  title: "Apurva Shukla's Lil Website",
+  description: 'My internet corner 🪴',
+  openGraph: { title: "Apurva Shukla's Lil Website", description: 'My internet corner 🪴', url: 'https://ashukla.co', siteName: "Apurva Shukla's Website", images: [{ url: HOME_OG_IMAGE_URL }], type: 'website' },
+  twitter: { card: 'summary_large_image', title: "Apurva Shukla's Lil Website", description: 'My internet corner 🪴', images: [HOME_OG_IMAGE_URL], creator: '@ashukla', site: '@ashukla' },
+  alternates: { canonical: 'https://ashukla.co' },
+  manifest: '/favicon/site.webmanifest',
+};
+export const viewport: Viewport = { themeColor: '#000000' };
+```
+
+- Typed sitemap:
+```ts
+// src/app/sitemap.ts
+import type { MetadataRoute } from 'next';
+import { getAllPosts } from '@/lib/api';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = 'https://ashukla.co';
+  const posts = getAllPosts();
+  const postUrls = posts.map((post) => ({
+    url: `${siteUrl}/posts/${post.slug}`,
+    lastModified: new Date(post.date),
+  }));
+  return [
+    { url: siteUrl, lastModified: new Date() },
+    { url: `${siteUrl}/writing`, lastModified: new Date() },
+    { url: `${siteUrl}/bookshelf`, lastModified: new Date() },
+    { url: `${siteUrl}/nyc-recs`, lastModified: new Date() },
+    { url: `${siteUrl}/about`, lastModified: new Date() },
+    ...postUrls,
+  ];
+}
+```
+
+- Typed robots:
+```ts
+// src/app/robots.ts
+import type { MetadataRoute } from 'next';
+
+export default function robots(): MetadataRoute.Robots {
+  const siteUrl = 'https://ashukla.co';
+  return {
+    rules: [{ userAgent: '*', allow: '/' }],
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
+  };
+}
+```
+
+If you want, I can also add this as `@blog-cursor-rule.mdc` into your repo for easy reference.
 • For LLM-behavior claims (including yourself), include:  
    – [Inference] or [Unverified], with a note that it’s based on observed patterns  
 • If you break this directive, say:  

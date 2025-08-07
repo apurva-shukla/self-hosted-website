@@ -19,7 +19,7 @@ const options: HTMLReactParserOptions = {
             width={parseInt(width, 10)}
             height={parseInt(height, 10)}
             className={className}
-            priority={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 800px, 900px"
           />
         );
       }

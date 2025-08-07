@@ -1,13 +1,13 @@
-import { Metadata, PageProps } from "@/lib/types";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { CMS_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import PostLayout from "@/app/_components/post-layout";
 import { PostBody } from "@/app/_components/post-body";
 
-export default async function Post({ params }: PageProps) {
-  const slug = Array.isArray(params.slug) ? params.slug.join('/') : params.slug;
+export default async function Post({ params }: { params: Promise<{ slug: string | string[] }> }) {
+  const { slug: incomingSlug } = await params;
+  const slug = Array.isArray(incomingSlug) ? incomingSlug.join('/') : incomingSlug;
   const post = getPostBySlug(slug);
 
   if (!post) {
@@ -23,7 +23,7 @@ export default async function Post({ params }: PageProps) {
 
   return (
     <PostLayout>
-      <h1 className="w-full font-jjannon font-normal text-4xl md:text-6xl leading-tight md:leading-snug text-primary mb-8">
+      <h1 className="w-full font-normal text-4xl md:text-6xl leading-tight md:leading-snug text-primary mb-8">
         {post.title}
       </h1>
       <PostBody content={content} />
@@ -31,21 +31,31 @@ export default async function Post({ params }: PageProps) {
   );
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const slug = Array.isArray(params.slug) ? params.slug.join('/') : params.slug;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string | string[] }> }): Promise<Metadata> {
+  const { slug: incomingSlug } = await params;
+  const slug = Array.isArray(incomingSlug) ? incomingSlug.join('/') : incomingSlug;
   const post = getPostBySlug(slug);
 
   if (!post || (post.draft && process.env.NODE_ENV === 'production')) {
     return notFound();
   }
 
+  const siteUrl = 'https://ashukla.co';
   const title = `AS | ${post.title}`;
+  const url = `${siteUrl}/posts/${post.slug}`;
+
+  const ogImages = post.ogImage?.url ? [{ url: post.ogImage.url }] : undefined;
 
   return {
     title,
+    description: post.excerpt ?? undefined,
+    alternates: { canonical: url },
     openGraph: {
       title,
-      images: [{ url: post.ogImage.url }],
+      description: post.excerpt ?? undefined,
+      type: 'article',
+      url,
+      images: ogImages,
     },
   };
 }
