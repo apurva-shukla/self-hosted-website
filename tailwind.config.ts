@@ -64,6 +64,14 @@ const config: Config = {
           "personal-development": "#22c55e", // green-500
           productivity: "#f59e0b", // amber-500
         },
+
+        // Callout colors exposed for utilities
+        callout: {
+          DEFAULT: "var(--callout-bg)",
+          bg: "var(--callout-bg)",
+          border: "var(--callout-border)",
+          foreground: "var(--callout-foreground)",
+        },
       },
       spacing: {
         28: "4rem",

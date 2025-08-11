@@ -26,20 +26,18 @@ export default function Index() {
                 Apurva Shukla
               </h1>
               <p className="font-jjannon font-normal text-[25px] leading-[30px] text-primary">
-                NYC-based product manager and marketer, passionate about tinkering
-                with software.
+                I help software companies grow by taking an engineering approach to marketing (or how some would say, "engineering-minded marketer").
                 <br />
-                <br />I currently work at{" "}
+                <br />Currently at{" "}
                 <a
                   href="https://www.rippling.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover-highlight"
                 >
-                  Rippling
+                  Rippling 
                 </a>{" "}
-                on GTM innovation/engineering projects to acquire new customers in
-                the US.
+                in NYC, helping acquire new customers in the US.
               </p>
             </div>
 
@@ -48,7 +46,7 @@ export default function Index() {
               <div className="flex flex-col items-start gap-2">
                 <Link
                   href="/writing"
-                  className="font-jjannon font-normal text-[24px] leading-[29px] text-primary-light hover:underline"
+                  className="font-jjannon font-normal text-[20px] leading-[29px] text-primary-light hover:underline"
                 >
                   &gt; writing
                 </Link>
@@ -57,7 +55,7 @@ export default function Index() {
                   </Link> */}
                 <Link
                   href="/uses-this"
-                  className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline"
+                  className="font-jjannon font-normal text-[20px] leading-[27px] text-primary-light hover:underline"
                 >
                   &gt; uses this
                 </Link>
@@ -66,7 +64,7 @@ export default function Index() {
                   </Link> */}
                 <Link
                   href="/about"
-                  className="font-jjannon font-normal text-[22px] leading-[27px] text-primary-light hover:underline"
+                  className="font-jjannon font-normal text-[20px] leading-[27px] text-primary-light hover:underline"
                 >
                   &gt; about me
                 </Link>
@@ -78,7 +76,7 @@ export default function Index() {
                   rel="noopener noreferrer"
                   aria-label="Link to X profile"
                 >
-                  <FaXTwitter className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
+                  <FaXTwitter className="text-primary-light h-5 w-5 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
                 </a>
                 <a
                   href="https://github.com/apurva-shukla"
@@ -86,7 +84,7 @@ export default function Index() {
                   rel="noopener noreferrer"
                   aria-label="Link to GitHub profile"
                 >
-                  <FaGithub className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
+                  <FaGithub className="text-primary-light h-5 w-5 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/apurvarshukla/"
@@ -94,7 +92,7 @@ export default function Index() {
                   rel="noopener noreferrer"
                   aria-label="Link to LinkedIn profile"
                 >
-                  <FaLinkedin className="text-primary-light h-6 w-6 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
+                  <FaLinkedin className="text-primary-light h-5 w-5 opacity-50 hover:opacity-100 hover:text-primary transition-colors" />
                 </a>
               </div>
             </div>

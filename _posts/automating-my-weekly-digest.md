@@ -36,6 +36,13 @@ The most robust solution was to treat my Git repository as the database. The wor
 
 I created a TypeScript script, `scripts/sync-bookmarks.ts`, to handle the core logic.
 
+<p class="callout bg-callout border-callout-border callout-border-width">
+  I don't know Typescript so this part was vibe coded in Cursor.
+  I don't know Typescript so this part was vibe coded in Cursor.
+  I don't know Typescript so this part was vibe coded in Cursor.
+  I don't know Typescript so this part was vibe coded in Cursor.
+</p>
+
 First, it fetches bookmarks from my specific Karakeep list. The script uses `dotenv` to load credentials from a `.env.local` file during local development.
 
 ```typescript
@@ -142,5 +149,4 @@ A final hurdle was getting `ts-node` to work correctly with the Next.js project'
 ```
 
 ### Final Result
-
 Now, every Sunday, I get a new post on my blog with a list of articles I read during the week. This workflow fetches my bookmarks from Karakeep, creates a new digest post, and commits it. Vercel sees the new commit and triggers a deployment. By the time I wake up, a new "Internet Goodies" post is live on my blog.
