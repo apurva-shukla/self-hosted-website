@@ -26,9 +26,9 @@ export default function Index() {
                 Apurva Shukla
               </h1>
               <p className="font-jjannon font-normal text-[25px] leading-[30px] text-primary">
-                I help software companies grow by taking an engineering approach to marketing (or how some would say, "engineering-minded marketer").
+                I'm an "engineering-minded marketer" who believes emotional and memorable marketing moments can be delivered at scale.    
                 <br />
-                <br />Currently at{" "}
+                <br />I currently work at{" "}
                 <a
                   href="https://www.rippling.com"
                   target="_blank"

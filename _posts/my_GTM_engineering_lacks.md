@@ -36,11 +36,13 @@ GTM engineering (go-to-market engineering) is a cross-functional, technical role
 ### My GTM engineering wishlist
 - **Git-like auditing and safe deploys (dbt for GTM)**
   - The current problem: GTM changes (fields, segments, scoring, routing, sequences) happen ad hoc in vendor UIs with little history, ownership, or review. Incidents are caused by silent changes, drift between sandboxes and prod, and no fast rollback.
-  - How it plagues GTM: trust erodes in lead routing and metrics; sales gets whiplash (missed or duplicate touches); teams avoid experimentation for fear of breaking prod; audits/compliance are painful.
-  - How we solve it (plain language): treat GTM like software. Every change is proposed, reviewed, tested on a safe copy, and only then published. If it backfires, we click “undo” and roll back instantly—just like version history in Google Docs, but for your GTM systems.
+   - Very visible in day to day (Marketing ops channel is filled with requests like 'why did you add this person to this campaign', 'why did these emails not go out', 'why is this pipeline not ingesting any new leads for the last 1 month', 'these leads got the wrong automated inbound followup sequences')
+   - very different vibes in the data-engg channel (my buildkite build failed - do an empty commit to retrigger it, I don't have permissions)
+   - the difference is that marketers are not empowered at the moment; they just do highlevel work, and have to trust the operations onto someone else; marketers uphappy; operations drowned; other functions have figured this out, and have made everyone a "builder"
+  - How it plagues GTM: trust erodes in lead routing and metrics; sales gets whiplash (missed or duplicate touches); teams avoid experimentation for fear of breaking prod; audits/compliance are painful; team scales lineraly; always defensive and never proactive; marketers don't have tools to diagnose
+  - How we solve it (plain language): treat GTM like software. Every change is proposed, reviewed, tracked, tested on a safe copy, and only then published. If it backfires, we click “undo” and roll back instantly—just like version history in Google Docs, but for your GTM systems.
   - Example: a new routing rule accidentally sends EMEA leads to the US team. With versioning and environments, we spot the change in a diff, test it on a subset in staging, and prevent the mishap—or roll it back in seconds if it slips through.
   - You don’t need to “code” routing to get these benefits: keep a human‑readable, declarative spec (YAML/JSON or a simple UI) as the source of truth. A thin adapter syncs this spec to tools like LeanData, Salesforce assignment rules/flows, HubSpot workflows, or Marketo smart campaigns via their APIs. Ops can keep using their tools; the spec gives version history, reviews, and rollbacks.
-  - Progressive adoption: export today’s rules into the spec; start by governing the riskiest segments; run nightly drift checks that pull vendor config, show diffs, and reconcile.
   - Non‑technical editing: provide a small admin UI that writes to the spec and opens a change request. Behind the scenes, the adapter compiles the spec to each vendor’s native constructs.
   - Safety net: dry‑run a week of historical leads through the proposed spec, compare expected owners vs. current prod, and only ship when variance is within tolerance.
   - Version every asset: lists, filters, transformations, scoring rules, playbooks, sequences, templates, and routing logic.
@@ -150,7 +152,7 @@ Provenance is the audit trail for any piece of GTM data.
 - **Why it matters**: lets the system (and humans) resolve conflicts, calculate confidence, majority‑vote across sources, detect drift, explain decisions, and quickly roll back or correct downstream records.
 - **How it’s used**: routing and messaging can require a minimum confidence, prefer specific sources for certain fields, or quarantine conflicts to a triage queue; corrections replay downstream with a full audit trail.
 
-
+I wrote a blog post with the above info:
 
 ### GTM OS: a field guide for builders (and skeptics)
 If you’ve ever woken up to discover your “EMEA enterprise” segment mysteriously shrank overnight, or that a country misclassification routed a seven‑figure account to the wrong team, you’ve felt it: GTM is the last mission‑critical system without a real control plane.
