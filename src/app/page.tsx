@@ -25,8 +25,17 @@ export default function Index() {
               <h1 className="font-jjannon font-normal text-[40px] leading-[58px] text-primary">
                 Apurva Shukla
               </h1>
-              <p className="font-jjannon font-normal text-[25px] leading-[30px] text-primary">
-                I'm an "engineering-minded marketer" who believes emotional and memorable marketing moments can be delivered at scale.    
+              <p className="font-jjannon font-normal text-[20px] leading-[29px] text-primary">
+                I'm an AI-pilled product manager and marketer. 
+                <br />
+                <br />At my core, I love to tinker and build. This includes everything from my{" "}
+                <a
+                  href="/posts/live_part1_homelab"
+                  className="hover-highlight"
+                >
+                  local homelab
+                </a>
+                , helping startups with their GTM/DataOps, and making my own bread.
                 <br />
                 <br />I currently work at{" "}
                 <a
